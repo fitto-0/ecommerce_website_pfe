@@ -1,0 +1,86 @@
+.about {
+    text-align: center;
+    padding: 50px 20px;
+}
+.about-title {
+    font-size: 2.5rem;
+    color: #d63384; /* Vibrant pink color */
+}
+.about-description {
+    font-size: 1.2rem;
+    color: #555;
+    margin: 20px 0;
+}
+.about-icons {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 30px;
+}
+.icon-box {
+    text-align: center;
+}
+.icon-box i {
+    font-size: 2rem;
+    color: #d63384; /* Vibrant pink color */
+}
+.icon-box p {
+    margin-top: 10px;
+    font-size: 1rem;
+    color: #333;
+}
+
+
+.contact {
+    text-align: center;
+    padding: 50px 20px;
+}
+.contact-title {
+    font-size: 2.5rem;
+    color: #d63384; /* Vibrant pink color */
+}
+.contact-description {
+    font-size: 1.2rem;
+    color: #555;
+    margin: 20px 0;
+}
+.contact-form {
+    max-width: 600px;
+    margin: 0 auto;
+    background: #fff;
+    border: 1px solid #c2c2c2;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+.form-group label {
+    display: block;
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 5px;
+}
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.btn-submit {
+    background-color: #d63384; /* Vibrant pink color */
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.btn-submit:hover {
+    background-color: #c02675; /* Darker pink for hover effect */
+}
+
