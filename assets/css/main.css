@@ -124,7 +124,7 @@ ul {
 }
 
 .one-card .photo {
-    background-color: #eaeaea;
+    background-color:rgba(234, 234, 234, 0);
     padding: 20px;
     display: flex;
     justify-content: center;

@@ -5,7 +5,7 @@ if(isset($_POST['insert_product'])){
     $product_description=$_POST['product_description'];
     $product_keywords=$_POST['product_keywords'];
     $product_category=$_POST['product_category'];
-    $product_brand=$_POST['product_brand'];
+    //$product_brand=$_POST['product_brand'];
     $product_price=$_POST['product_price'];
     $product_status='true';
     //access images
@@ -17,7 +17,7 @@ if(isset($_POST['insert_product'])){
     $temp_image_two=$_FILES['product_image_two']['tmp_name'];
     $temp_image_three=$_FILES['product_image_three']['tmp_name'];
     //checking empty condition
-    if($product_title == '' || $product_description == '' || $product_keywords == '' || $product_category == '' || $product_brand == '' || empty($product_price) || empty($product_image_one) || empty($product_image_two) || empty($product_image_three)){
+    if($product_title == '' || $product_description == '' || $product_keywords == '' || $product_category == '' || empty($product_price) || empty($product_image_one) || empty($product_image_two) || empty($product_image_three)){
         echo "<script>alert(\"Fields should not be empty\");</script>";
         exit();
     }else{
@@ -26,7 +26,7 @@ if(isset($_POST['insert_product'])){
         move_uploaded_file($temp_image_two,"./product_images/$product_image_two");
         move_uploaded_file($temp_image_three,"./product_images/$product_image_three");
         //insert query in db
-        $insert_query = "INSERT INTO `products` (product_title,product_description,product_keywords,category_id,brand_id,product_image_one,product_image_two,product_image_three,product_price,date,status) VALUES ('$product_title','$product_description','$product_keywords','$product_category','$product_brand','$product_image_one','$product_image_two','$product_image_three','$product_price',NOW(),'$product_status')";
+        $insert_query = "INSERT INTO `products` (product_title,product_description,product_keywords,category_id,product_image_one,product_image_two,product_image_three,product_price,date,status) VALUES ('$product_title','$product_description','$product_keywords','$product_category','$product_image_one','$product_image_two','$product_image_three','$product_price',NOW(),'$product_status')";
         $insert_result=mysqli_query($con,$insert_query);
         if($insert_result){
         echo "<script>alert(\"Product Inserted Successfully\");</script>";
@@ -89,23 +89,10 @@ if(isset($_POST['insert_product'])){
                             ?>
                         </select>
                     </div>
-                    <!-- brands -->
-                    <div class="form-outline mb-4">
-                        <select class="form-select" name="product_brand" id="product_brand">
-                            <option selected disabled>Select a Brand</option>
-                            <?php
-                            $select_query = 'SELECT * FROM `brands`';
-                            $select_result = mysqli_query($con, $select_query);
-                            while ($row = mysqli_fetch_assoc($select_result)) {
-                                $brand_title = $row['brand_title'];
-                                $brand_id = $row['brand_id'];
-                                echo "
-                                        <option value='$brand_id'>$brand_title</option>
-                                        ";
-                            }
-                            ?>
-                        </select>
-                    </div>
+
+                    <!-- brand -->
+                    
+                    
                     <!-- Image one -->
                     <div class="form-outline mb-4">
                         <label for="product_image_one" class="form-label">Product Image One</label>

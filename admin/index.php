@@ -2,16 +2,25 @@
     include('../includes/connect.php');
     include('../functions/common_functions.php');
     session_start();
-    if(isset($_SESSION['admin_username'])){
-        $admin_name = $_SESSION['admin_username'];
-        $get_admin_data = "SELECT * FROM `admin_table` WHERE admin_name = '$admin_name'";
-        $get_admin_result = mysqli_query($con,$get_admin_data);
-        $row_fetch_admin_data = mysqli_fetch_array($get_admin_result);
-        $admin_name = $row_fetch_admin_data['admin_name'];
-        $admin_image = $row_fetch_admin_data['admin_image'];
-    }else{
-        echo "<script>window.open('./index.php','_self');</script>";
+    if(isset($_SESSION['username'])){
+        $username = $_SESSION['username'];
+        $get_admin_data = "SELECT * FROM `user_table` WHERE username = '$username' AND role = 'admin'";
+        $get_admin_result = mysqli_query($con, $get_admin_data);
+    
+        if($get_admin_result && mysqli_num_rows($get_admin_result) > 0){
+            $row_fetch_admin_data = mysqli_fetch_array($get_admin_result);
+            $username = $row_fetch_admin_data['username'];
+            $user_image = $row_fetch_admin_data['user_image'];
+        } else {
+            // Redirect or show access denied
+            echo "<script>alert('Access denied. Not an admin.'); window.open('users_aera/user_login.php','_self');</script>";
+            exit();
+        }
+    } else {
+        echo "<script>window.open('users_aera/user_login.php','_self');</script>";
+        exit();
     }
+    
 ?>
 
 
@@ -36,14 +45,17 @@
     <!-- Start NavBar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
-            <a class="navbar-brand fw-bold" href="#">Diva's Bloom</a>
+        <a class="navbar-brand d-flex align-items-center gap-2" href="./index.php">
+                <img src="./admin_images/Group 32.png" alt="Diva's Bloom Logo" style="height: 60px;">
+                <span class="fw-bold"></span>
+            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContentad" aria-controls="navbarSupportedContentad" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContentad">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Welcome <?php echo $admin_name;?></a>
+                        <a class="nav-link active" aria-current="page" href="./index.php">Welcome <?php echo $username;?></a>
                     </li>
                     <li class="nav-item">
                     <button class="btn btn-primary p-0 px-1">
@@ -55,6 +67,7 @@
             </div>
         </div>
     </nav>
+    <!--wa wikwiiiiiiiik a 3ibad lah -->
     <!-- End NavBar -->
     <!-- Start Control Buttons -->
     <div class="control">
@@ -69,8 +82,8 @@
             <div class="row align-items-center">
                 <div class="col-md-2">
                     <div class="admin-image">
-                        <a href="./index.php"><img src="./admin_images/<?php echo $admin_image;?>" class="img-thumbnail" alt="Admin Photo"></a>
-                        <p><?php echo $admin_name;?></p>
+                        <a href="./index.php"><img src="./users_area/user_images/<?php echo $user_image;?>" class="img-thumbnail" alt="Admin Photo"></a>
+                        <p><?php echo $username;?></p>
                     </div>
                 </div>
                 <div class="col-md-10">

@@ -69,7 +69,7 @@ session_start();
 if (isset($_POST['admin_login'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
-    $select_query = "SELECT * FROM `admin_table` WHERE admin_name='$username'";
+    $select_query = "SELECT * FROM `admin_table` WHERE username='$username'";
     $select_result = mysqli_query($con, $select_query);
     $row_data = mysqli_fetch_assoc($select_result);
     $row_count = mysqli_num_rows($select_result);

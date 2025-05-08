@@ -16,23 +16,26 @@ function getProduct($numToDisplay = '')
                 $product_title = $row['product_title'];
                 $product_image_one = $row['product_image_one'];
                 $product_price = $row['product_price'];
-                $category_id = $row['category_id'];
-                $brand_id = $row['brand_id'];
+                //$category_id = $row['category_id'];
+                //$brand_id = $row['brand_id'];
                 echo "
         <div class='col-md-4 mb-2'>
         <div class='one-card'>
-            <div class='photo'>
-                <img src='./admin/product_images/$product_image_one' alt='$product_title'>
-                <button>
+        <a href='product_details.php?product_id=$product_id' style='width:200px ; display: flex; items: center; justify-content: center; height: 200px; >
+        <div class='photo'>
+                <img src='./admin/product_images/$product_image_one' alt='$product_title' style=' width: 150px;'>
+                <button style='display: none'>
                     <a class='text-light' href='products.php?add_to_cart=$product_id'>Add To Cart</a>
                 </button>
-                <button>
+                <button style='display: none'>
                     <a class='text-light' href='product_details.php?product_id=$product_id'>View More</a>
                 </button>
             </div>
-            <div class='content'>
+        </a>
+            
+            <div class='content' style=' justify-content: center;'>
                 <span class='title fw-bold'>$product_title</span>
-                <div class='desc'>
+                <div class='desc' >
                     <span>\$$product_price</span>
                     <span>
                         <svg width='16' height='15' viewBox='0 0 16 15' fill='none' xmlns='http://www.w3.org/2000/svg'>
@@ -262,6 +265,7 @@ function search_product()
                 <a class='text-light' href='products.php?add_to_cart=$product_id'>Add To Cart</a>
             </button>
             <button>
+
                 <a class='text-light' href='product_details.php?product_id=$product_id'>View More</a>
             </button>
             </div>
@@ -296,6 +300,8 @@ function search_product()
         }
     }
 }
+
+
 
 // view details function 
 function viewDetails()
@@ -373,11 +379,11 @@ function viewDetails()
                             <form action='products.php?add_to_cart=$product_id'>
                                 <div class='buy-item d-flex gap-3 justify-content-center align-items-center'>
                                     <div class='num-btns d-flex gap-1'>
-                                        <button type='button' class='btn btn-increase' onclick='increaseValueBtn()'>+</button>
+                                        <button type='button' class='btn btn-decrease' onclick='decreaseValueBtn()'>-</button>
                                         <input type='number' class='form-control' name='num_of_items' id='num_of_items' value='1'>
                                         <input type='hidden' class='form-control' name='add_to_cart' id='add_to_cart' value='$product_id'/>
                                         <!-- <span class='num-of-items'>3</span> -->
-                                        <button type='button' class='btn btn-decrease' onclick='decreaseValueBtn()'> -</button>
+                                        <button type='button' class='btn btn-increase' onclick='increaseValueBtn()'>+</button>
                                     </div>
                                     <div>
                                         <input type='submit' class='btn btn-primary' value='Buy Now'>

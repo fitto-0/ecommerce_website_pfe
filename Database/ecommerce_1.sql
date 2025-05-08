@@ -29,9 +29,9 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `admin_table` (
   `admin_id` int(11) NOT NULL,
-  `admin_name` varchar(100) NOT NULL,
+  `username` varchar(100) NOT NULL,
   `admin_email` varchar(200) NOT NULL,
-  `admin_image` varchar(255) NOT NULL,
+  `user_image` varchar(255) NOT NULL,
   `admin_password` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -39,7 +39,7 @@ CREATE TABLE `admin_table` (
 -- Dumping data for table `admin_table`
 --
 
-INSERT INTO `admin_table` (`admin_id`, `admin_name`, `admin_email`, `admin_image`, `admin_password`) VALUES
+INSERT INTO `admin_table` (`admin_id`, `username`, `admin_email`, `user_image`, `admin_password`) VALUES
 (1, 'abdo', 'abdo@gmail.com', 'logo after 3d_2.png', '$2y$10$M/A/r5j/GSeJrAZxI8NtRu9eG5yNltfgTrfQVoClfSIF/pzNUXa2W');
 
 -- --------------------------------------------------------

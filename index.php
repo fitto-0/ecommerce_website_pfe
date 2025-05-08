@@ -23,10 +23,10 @@ session_start();
     <!-- Start NavBar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
-        <a class="navbar-brand d-flex align-items-center gap-2" href="./index.php">
-  <img src="assets/images/logo1.png" alt="Diva's Bloom Logo" style="height: 60px;">
-  <span class="fw-bold">Diva's Bloom</span>
-</a>
+            <a class="navbar-brand d-flex align-items-center gap-2" href="./index.php">
+                <img src="assets/images/Group 32.png" alt="Diva's Bloom Logo" style="height: 60px;">
+                <span class="fw-bold"></span>
+            </a>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
