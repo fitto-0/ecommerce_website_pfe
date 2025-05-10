@@ -66,26 +66,32 @@ if (isset($_POST['user_login'])) {
         $user_ip = getIPAddress();
 
         if (password_verify($user_password, $stored_password)) {
+            // Set session values
             $_SESSION['username'] = $user_username;
+            $_SESSION['role'] = $user_role;
+            $_SESSION['admin_image'] = $row_data['user_image']; // change if column is named differently
+            $_SESSION['admin_id'] = $row_data['user_id'];
 
-            // Admin login
+            // Redirect Admin
             if ($user_role === 'admin') {
                 echo "<script>alert('Welcome Admin!');</script>";
                 echo "<script>window.open('../admin/index.php','_self');</script>";
                 exit();
             }
 
-            // Normal user login
+            // Normal user redirection
             $select_cart_query = "SELECT * FROM `card_details` WHERE ip_address='$user_ip'";
             $select_cart_result = mysqli_query($con, $select_cart_query);
             $row_cart_count = mysqli_num_rows($select_cart_result);
 
             if ($row_cart_count > 0) {
                 echo "<script>alert('Login Successful! Welcome back');</script>";
-                echo "<script>window.open('index.php','_self');</script>";
+                echo "<script>window.open('../index.php','_self');</script>";
+                exit();
             } else {
                 echo "<script>alert('Login Successful! Redirecting to profile...');</script>";
                 echo "<script>window.open('profile.php','_self');</script>";
+                exit();
             }
         } else {
             echo "<script>alert('Wrong password ❌');</script>";

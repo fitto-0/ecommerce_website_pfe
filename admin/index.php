@@ -59,12 +59,10 @@
                     </li>
                     <li class="nav-item">
                     <button class="btn btn-primary p-0 px-1">
-                            <a href="./logout.php" class="nav-link text-light">Logout</a>
+                            <a href="./admin_logout.php" class="nav-link text-light">Logout</a>
                         </button>
                     </li>
                 </ul>
-
-                
                 
             </div>
         </div>
@@ -84,7 +82,8 @@
             <div class="row align-items-center">
                 <div class="col-md-2">
                     <div class="admin-image">
-                        <a href="./index.php"><img src="./users_area/user_images/<?php echo $user_image;?>" class="img-thumbnail" alt="Admin Photo"></a>
+                        <img src="../users_area/user_images/<?php echo urlencode($user_image); ?>" class="img-thumbnail" alt="Admin Photo">
+                        <!--daba breb w matkhedmi ta nwerri l jedmok ana dssara-->
                         <p><?php echo $username;?></p>
                     </div>
                 </div>
