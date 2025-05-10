@@ -59,10 +59,12 @@
                     </li>
                     <li class="nav-item">
                     <button class="btn btn-primary p-0 px-1">
-                            <a href="./admin_logout.php" class="nav-link text-light">Logout</a>
+                            <a href="./logout.php" class="nav-link text-light">Logout</a>
                         </button>
                     </li>
                 </ul>
+
+                
                 
             </div>
         </div>
