@@ -1,39 +1,91 @@
 <?php
 include('../includes/connect.php');
-if(isset($_POST['insert_product'])){
-    $product_title=$_POST['product_title'];
-    $product_description=$_POST['product_description'];
-    $product_keywords=$_POST['product_keywords'];
-    $product_category=$_POST['product_category'];
-    //$product_brand=$_POST['product_brand'];
-    $product_price=$_POST['product_price'];
-    $product_status='true';
-    //access images
-    $product_image_one=$_FILES['product_image_one']['name'];
-    $product_image_two=$_FILES['product_image_two']['name'];
-    $product_image_three=$_FILES['product_image_three']['name'];
-    //access images tmp name
-    $temp_image_one=$_FILES['product_image_one']['tmp_name'];
-    $temp_image_two=$_FILES['product_image_two']['tmp_name'];
-    $temp_image_three=$_FILES['product_image_three']['tmp_name'];
-    //checking empty condition
-    if($product_title == '' || $product_description == '' || $product_keywords == '' || $product_category == '' || empty($product_price) || empty($product_image_one) || empty($product_image_two) || empty($product_image_three)){
-        echo "<script>alert(\"Fields should not be empty\");</script>";
+
+if (isset($_POST['insert_product'])) {
+    $product_title = $_POST['product_title'];
+    $product_description = $_POST['product_description'];
+    $product_keywords = $_POST['product_keywords'];
+    $product_category = $_POST['product_category'];
+    $product_price = $_POST['product_price'];
+    $product_status = 'true';
+
+    // Access images
+    $product_image_one = $_FILES['product_image_one']['name'];
+    $product_image_two = $_FILES['product_image_two']['name'];
+    $product_image_three = $_FILES['product_image_three']['name'];
+
+    // Access images tmp name
+    $temp_image_one = $_FILES['product_image_one']['tmp_name'];
+    $temp_image_two = $_FILES['product_image_two']['tmp_name'];
+    $temp_image_three = $_FILES['product_image_three']['tmp_name'];
+
+    // Checking empty fields
+    if (empty($product_title) || empty($product_description) || empty($product_keywords) || empty($product_category) || empty($product_price) || empty($product_image_one) || empty($product_image_two) || empty($product_image_three)) {
+        echo "<script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Fields should not be empty!',
+            });
+        </script>";
         exit();
-    }else{
-        //move folders
-        move_uploaded_file($temp_image_one,"./product_images/$product_image_one");
-        move_uploaded_file($temp_image_two,"./product_images/$product_image_two");
-        move_uploaded_file($temp_image_three,"./product_images/$product_image_three");
-        //insert query in db
-        $insert_query = "INSERT INTO `products` (product_title,product_description,product_keywords,category_id,product_image_one,product_image_two,product_image_three,product_price,date,status) VALUES ('$product_title','$product_description','$product_keywords','$product_category','$product_image_one','$product_image_two','$product_image_three','$product_price',NOW(),'$product_status')";
-        $insert_result=mysqli_query($con,$insert_query);
-        if($insert_result){
-        echo "<script>alert(\"Product Inserted Successfully\");</script>";
+    } else {
+        // Check for file types (you can add more types)
+        $allowed_types = ['image/jpeg', 'image/png', 'image/gif'];
+        if (!in_array($_FILES['product_image_one']['type'], $allowed_types) || !in_array($_FILES['product_image_two']['type'], $allowed_types) || !in_array($_FILES['product_image_three']['type'], $allowed_types)) {
+            echo "<script>
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Invalid file type',
+                    text: 'Only image files (JPEG, PNG, GIF) are allowed.',
+                });
+            </script>";
+            exit();
+        }
+
+        // Move folders
+        move_uploaded_file($temp_image_one, "./product_images/$product_image_one");
+        move_uploaded_file($temp_image_two, "./product_images/$product_image_two");
+        move_uploaded_file($temp_image_three, "./product_images/$product_image_three");
+
+        // Prepare and execute insert query
+        $insert_query = "INSERT INTO `products` (product_title, product_description, product_keywords, category_id, product_image_one, product_image_two, product_image_three, product_price, date, status) 
+                        VALUES (?, ?, ?, ?, ?, ?, ?, ?, NOW(), ?)";
+
+        if ($stmt = $con->prepare($insert_query)) {
+            $stmt->bind_param("sssssssd", $product_title, $product_description, $product_keywords, $product_category, $product_image_one, $product_image_two, $product_image_three, $product_price, $product_status);
+            if ($stmt->execute()) {
+                echo "<script>
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Product Inserted Successfully',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                </script>";
+            } else {
+                echo "<script>
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Failed to Insert Product',
+                        text: 'There was an issue with the database.',
+                    });
+                </script>";
+            }
+            $stmt->close();
+        } else {
+            echo "<script>
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Database Error',
+                    text: 'Unable to prepare the query.',
+                });
+            </script>";
         }
     }
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 

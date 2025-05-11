@@ -44,6 +44,7 @@ include('../functions/common_functions.php');
             </div>
         </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script src="../assets/js/bootstrap.bundle.js"></script>
 </body>
@@ -54,7 +55,7 @@ include('../functions/common_functions.php');
 if (isset($_POST['user_login'])) {
     $user_username = $_POST['user_username'];
     $user_password = $_POST['user_password'];
-    
+
     $select_query = "SELECT * FROM `user_table` WHERE username='$user_username'";
     $select_result = mysqli_query($con, $select_query);
     $row_count = mysqli_num_rows($select_result);
@@ -62,42 +63,87 @@ if (isset($_POST['user_login'])) {
     if ($row_count > 0) {
         $row_data = mysqli_fetch_assoc($select_result);
         $stored_password = $row_data['user_password'];
-        $user_role = $row_data['role']; // 'admin' or 'user'
+        $user_role = $row_data['role'];
         $user_ip = getIPAddress();
 
         if (password_verify($user_password, $stored_password)) {
-            // Set session values
             $_SESSION['username'] = $user_username;
             $_SESSION['role'] = $user_role;
-            $_SESSION['admin_image'] = $row_data['user_image']; // change if column is named differently
+            $_SESSION['admin_image'] = $row_data['user_image'];
             $_SESSION['admin_id'] = $row_data['user_id'];
 
-            // Redirect Admin
+            echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
+
             if ($user_role === 'admin') {
-                echo "<script>alert('Welcome Admin!');</script>";
-                echo "<script>window.open('../admin/index.php','_self');</script>";
+                echo "
+                <script>
+                Swal.fire({
+                    icon: 'info',
+                    title: 'Welcome Admin 👑',
+                    text: 'Redirecting to admin dashboard...',
+                    confirmButtonColor: '#7C3AED'
+                }).then(() => {
+                    window.location.href = '../admin/index.php';
+                });
+                </script>";
                 exit();
             }
 
-            // Normal user redirection
             $select_cart_query = "SELECT * FROM `card_details` WHERE ip_address='$user_ip'";
             $select_cart_result = mysqli_query($con, $select_cart_query);
             $row_cart_count = mysqli_num_rows($select_cart_result);
 
             if ($row_cart_count > 0) {
-                echo "<script>alert('Login Successful! Welcome back');</script>";
-                echo "<script>window.open('../index.php','_self');</script>";
+                echo "
+                <script>
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Login Successful 🎉',
+                    text: 'You have items waiting in your cart!',
+                    confirmButtonColor: '#7C3AED'
+                }).then(() => {
+                    window.location.href = '../index.php';
+                });
+                </script>";
                 exit();
             } else {
-                echo "<script>alert('Login Successful! Redirecting to profile...');</script>";
-                echo "<script>window.open('profile.php','_self');</script>";
+                echo "
+                <script>
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Welcome Back 💖',
+                    text: 'Redirecting to your profile...',
+                    confirmButtonColor: '#7C3AED'
+                }).then(() => {
+                    window.location.href = 'profile.php';
+                });
+                </script>";
                 exit();
             }
         } else {
-            echo "<script>alert('Wrong password ❌');</script>";
+            echo "
+            <script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+            <script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Wrong Password ❌',
+                text: 'Try again, soldier!',
+                confirmButtonColor: '#EF4444'
+            });
+            </script>";
         }
     } else {
-        echo "<script>alert('Username not found ❌');</script>";
+        echo "
+        <script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+        <script>
+        Swal.fire({
+            icon: 'warning',
+            title: 'Username Not Found 🚫',
+            text: 'Are you sure you registered?',
+            confirmButtonColor: '#FBBF24'
+        });
+        </script>";
     }
 }
 ?>
+

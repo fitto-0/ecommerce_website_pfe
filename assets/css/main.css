@@ -632,14 +632,14 @@ td {
     vertical-align: middle;
 }
 /* End profile  */
-/* Start Admin register & login  */
+/* Start Admin register & login  
 .admin-register{
     padding-top:30px;
     padding-bottom:20px;
 }
 .admin-register .row .admin-register{
     width:100%;
-}
+}*/
 /* End Admin register & login  */
 
 .navbar-brand{
@@ -648,4 +648,57 @@ td {
 
 .navbar-brand:hover{
     color: #c02675;
+}
+
+.register {
+    background: #f9f6fb;
+    padding: 40px 0;
+    min-height: 100vh;
+}
+
+.register h2 {
+    color: #c02675;
+    font-weight: 700;
+}
+
+.register form {
+    background: #fff;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    transition: 0.3s ease;
+}
+
+.register form:hover {
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+}
+
+.form-outline input {
+    border-radius: 12px;
+    border: 1px solid #ddd;
+}
+
+.form-outline input:focus {
+    border-color: #c02675;
+    box-shadow: 0 0 0 0.2rem rgba(192, 38, 117, 0.25);
+}
+
+.btn-primary {
+    background-color: #c02675;
+    border: none;
+    border-radius: 12px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #a01f61;
+}
+
+.text-primary {
+    color: #c02675 !important;
+}
+
+.text-primary:hover {
+    text-decoration: none;
+    color: #a01f61 !important;
 }

@@ -1,27 +1,35 @@
 <?php
-    include('../includes/connect.php');
-    include('../functions/common_functions.php');
-    session_start();
-    if(isset($_SESSION['username'])){
-        $username = $_SESSION['username'];
-        $get_admin_data = "SELECT * FROM `user_table` WHERE username = '$username' AND role = 'admin'";
-        $get_admin_result = mysqli_query($con, $get_admin_data);
+include('../includes/connect.php');
+include('../functions/common_functions.php');
+session_start();
+
+if(isset($_SESSION['username'])){
+    $username = $_SESSION['username'];
+
+    // Use prepared statements to prevent SQL injection
+    $get_admin_data = "SELECT * FROM `user_table` WHERE username = ? AND role = 'admin'";
+    $stmt = mysqli_prepare($con, $get_admin_data);
+    mysqli_stmt_bind_param($stmt, "s", $username);
+    mysqli_stmt_execute($stmt);
+    $get_admin_result = mysqli_stmt_get_result($stmt);
     
-        if($get_admin_result && mysqli_num_rows($get_admin_result) > 0){
-            $row_fetch_admin_data = mysqli_fetch_array($get_admin_result);
-            $username = $row_fetch_admin_data['username'];
-            $user_image = $row_fetch_admin_data['user_image'];
-        } else {
-            // Redirect or show access denied
-            echo "<script>alert('Access denied. Not an admin.'); window.open('users_aera/user_login.php','_self');</script>";
-            exit();
-        }
+    if($get_admin_result && mysqli_num_rows($get_admin_result) > 0){
+        $row_fetch_admin_data = mysqli_fetch_array($get_admin_result);
+        $username = $row_fetch_admin_data['username'];
+        $user_image = $row_fetch_admin_data['user_image'];
     } else {
-        echo "<script>window.open('users_aera/user_login.php','_self');</script>";
+        // Graceful redirection with error message
+        $_SESSION['error_message'] = 'Access denied. Not an admin.';
+        header('Location: users_aera/user_login.php');
         exit();
     }
-    
+} else {
+    // Redirect to login page if no session
+    header('Location: users_aera/user_login.php');
+    exit();
+}
 ?>
+
 
 
 
@@ -95,6 +103,7 @@
                         <button class="btn btn-outline-primary m-2">
                             <a href="index.php?view_products" class="nav-link">View Products</a>
                         </button>
+                        
                         <button class="btn btn-outline-primary m-2">
                             <a href="index.php?insert_category" class="nav-link">Insert Categories</a>
                         </button>

@@ -1,22 +1,73 @@
 <?php
 include('../includes/connect.php');
-if (isset($_POST['insert_categ_title'])) {
-    $category_title = $_POST['categ_title'];
-    $select_query = "SELECT * FROM `categories` WHERE category_title = '$category_title'";
-    $select_result = mysqli_query($con,$select_query);
-    $numOfResults = mysqli_num_rows($select_result);
-    if ($numOfResults > 0) {
-        echo "<script>alert('Category is already in Database');</script>";
-    } else {
 
-        $insert_query = "INSERT INTO `categories` (category_title) VALUES ('$category_title')";
-        $insert_result = mysqli_query($con, $insert_query);
-        if ($insert_result){
-            echo "<script>alert('Category has been inserted successfully');</script>";
+if (isset($_POST['insert_categ_title'])) {
+    $category_title = trim($_POST['categ_title']);
+    
+    // Check if category title is empty
+    if (empty($category_title)) {
+        echo "<script>
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Category title cannot be empty',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+              </script>";
+    } else {
+        // Prevent SQL injection with prepared statements
+        $select_query = "SELECT * FROM `categories` WHERE category_title = ?";
+        $stmt = mysqli_prepare($con, $select_query);
+        mysqli_stmt_bind_param($stmt, "s", $category_title);
+        mysqli_stmt_execute($stmt);
+        $select_result = mysqli_stmt_get_result($stmt);
+        
+        if (mysqli_num_rows($select_result) > 0) {
+            echo "<script>
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Category already exists',
+                        text: 'This category is already in the database.',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                  </script>";
+        } else {
+            // Insert query with prepared statement
+            $insert_query = "INSERT INTO `categories` (category_title) VALUES (?)";
+            $stmt = mysqli_prepare($con, $insert_query);
+            mysqli_stmt_bind_param($stmt, "s", $category_title);
+            $insert_result = mysqli_stmt_execute($stmt);
+
+            if ($insert_result) {
+                echo "<script>
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Category inserted successfully',
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                      </script>";
+            } else {
+                echo "<script>
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error inserting category',
+                            text: 'There was an issue while inserting the category.',
+                            showConfirmButton: true
+                        });
+                      </script>";
+            }
         }
     }
+
+    // Close the prepared statement and the database connection
+    mysqli_stmt_close($stmt);
+    mysqli_close($con);
 }
 ?>
+
+
 
 <div class="categ-header">
             <div class="sub-title">
