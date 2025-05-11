@@ -81,7 +81,7 @@ if (isset($_POST['user_login'])) {
                     icon: 'info',
                     title: 'Welcome Admin 👑',
                     text: 'Redirecting to admin dashboard...',
-                    confirmButtonColor: '#7C3AED'
+                    confirmButtonColor: '#c02675'
                 }).then(() => {
                     window.location.href = '../admin/index.php';
                 });
@@ -100,7 +100,7 @@ if (isset($_POST['user_login'])) {
                     icon: 'success',
                     title: 'Login Successful 🎉',
                     text: 'You have items waiting in your cart!',
-                    confirmButtonColor: '#7C3AED'
+                    confirmButtonColor: '#c02675'
                 }).then(() => {
                     window.location.href = '../index.php';
                 });
@@ -113,7 +113,7 @@ if (isset($_POST['user_login'])) {
                     icon: 'success',
                     title: 'Welcome Back 💖',
                     text: 'Redirecting to your profile...',
-                    confirmButtonColor: '#7C3AED'
+                    confirmButtonColor: '#c02675'
                 }).then(() => {
                     window.location.href = 'profile.php';
                 });
