@@ -28,6 +28,20 @@ if(isset($_SESSION['username'])){
     header('Location: users_aera/user_login.php');
     exit();
 }
+
+
+
+if (isset($_GET['delete_user'])) {
+    $delete_id = $_GET['delete_user'];
+    $delete_query = "DELETE FROM user_table WHERE user_id = $delete_id";
+    $result = mysqli_query($con, $delete_query);
+    if ($result) {
+        echo "<script>alert('User deleted successfully'); window.location.href='index.php?view_users';</script>";
+    } else {
+        echo "<script>alert('Failed to delete user');</script>";
+    }
+}
+
 ?>
 
 

@@ -53,7 +53,8 @@ if (isset($_POST['insert_product'])) {
                         VALUES (?, ?, ?, ?, ?, ?, ?, ?, NOW(), ?)";
 
         if ($stmt = $con->prepare($insert_query)) {
-            $stmt->bind_param("sssssssd", $product_title, $product_description, $product_keywords, $product_category, $product_image_one, $product_image_two, $product_image_three, $product_price, $product_status);
+            $stmt->bind_param('sssisssds', $product_title, $product_description, $product_keywords, $product_category, $product_image_one, $product_image_two, $product_image_three, $product_price, $product_status);
+
             if ($stmt->execute()) {
                 echo "<script>
                     Swal.fire({
@@ -95,6 +96,8 @@ if (isset($_POST['insert_product'])) {
     <title>Insert Products - Admin Dashboard</title>
     <link rel="stylesheet" href="../assets/css/bootstrap.css" />
     <link rel="stylesheet" href="../assets/css/main.css" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </head>
 
 <body>

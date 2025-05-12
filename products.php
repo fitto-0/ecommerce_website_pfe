@@ -136,7 +136,7 @@ session_start();
                     <h2>Browse By Category</h2>
                 </div>
                 <div class="row mx-0">
-                    <div class="col-md-2 side-nav p-0">
+                    <div class="col-md-4 mb-4">
                         <!-- side nav  -->
                         
                         <div class="divider"></div>
@@ -155,7 +155,7 @@ session_start();
                         </ul>
 
                     </div>
-                    <div class="col-md-10">
+                    <div class="col-md-4 mb-4"  style='display: flex; gap: 2rem;' >
                         <!-- products  -->
                         <div class="row">
                             <?php

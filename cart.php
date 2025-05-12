@@ -2,6 +2,18 @@
 include('./includes/connect.php');
 include('./functions/common_functions.php');
 session_start();
+
+if (isset($_POST['remove_item'])) {
+    $remove_id = $_POST['remove_id'];
+    $ip = getIPAddress();
+    $delete_query = "DELETE FROM `card_details` WHERE product_id = '$remove_id' AND ip_address = '$ip'";
+    $run_delete = mysqli_query($con, $delete_query);
+
+    if ($run_delete) {
+        echo "<script>window.location.href='cart.php';</script>"; // Refresh to show updated cart
+    }
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -204,8 +216,13 @@ session_start();
                                             <input type="submit" value="Update" class="btn btn-dark" name="update_cart">
                                         </td>
                                         <td>
-                                            <!-- <button class="btn btn-primary">Remove</button> -->
-                                            <input type="submit" value="Remove" class="btn btn-primary" name="remove_cart">
+                                            <!-- <button class="btn btn-primary">Remove</button>
+                                            <input type="submit" value="Remove" class="btn btn-primary" name="remove_cart"> -->
+                                            <form action="" method="post">
+                                            <input type="hidden" name="remove_id" value="<?php echo $product_id; ?>">
+                                            <button type="submit" name="remove_item" class="btn btn-danger">Remove</button>
+                                            </form>
+
                                         </td>
                                     </tr>
                         <?php   }

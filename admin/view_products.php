@@ -88,7 +88,7 @@
                                                     <div class='btns d-flex gap-3'>
                                                         <button type='button' class='btn px-5 btn-secondary' data-bs-dismiss='modal'>Cancel</button>
                                                         <button type='button' class='btn px-5 btn-primary' data-bs-dismiss='modal'>
-                                                            <a class='text-light' href='index.php?delete_brand=$product_id'>
+                                                            <a class='text-light' href='index.php?delete_product=$product_id'>
                                                                 Delete ($product_title)
                                                             </a>
                                                         </button>
