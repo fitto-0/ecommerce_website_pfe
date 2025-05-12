@@ -1,6 +1,6 @@
 <?php
 include('./includes/connect.php');
-include('./functions/common_functions.php');
+include('./functions/common_function.php');
 session_start();
 ?>
 <!DOCTYPE html>
@@ -12,6 +12,7 @@ session_start();
     <title>Diva's Bloom Home Page</title>
     <link rel="stylesheet" href="./assets/css/bootstrap.css" />
     <link rel="stylesheet" href="./assets/css/main.css" />
+
 </head>
 
 <body>

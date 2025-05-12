@@ -1,6 +1,6 @@
 <?php
 include('../includes/connect.php');
-include('../functions/common_functions.php');
+include('../functions/common_function.php');
 session_start();
 ?>
 <!DOCTYPE html>
@@ -63,6 +63,7 @@ session_start();
      <!-- SweetAlert2 -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+
     <script src="../assets/js/bootstrap.bundle.js"></script>
 </body>
 
@@ -76,16 +77,42 @@ if (isset($_POST['admin_login'])) {
     $row_data = mysqli_fetch_assoc($select_result);
     $row_count = mysqli_num_rows($select_result);
     //user check about username & pass
-    if ($row_count > 0) {
-        if (password_verify($password, $row_data['admin_password'])) {
-            $_SESSION['admin_username'] = $username;
-            echo "<script>alert('Login Successfully');</script>";
-            echo "<script>window.open('./index.php','_self');</script>";
-        } else {
-            echo "<script>alert('Invalid Credentials')</script>";
-        }
+    
+if ($row_count > 0) {
+    if (password_verify($password, $row_data['admin_password'])) {
+        $_SESSION['admin_username'] = $username;
+        echo "<script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Login Successful 🎉',
+                text: 'Welcome back, $username!',
+                showConfirmButton: false,
+                timer: 1500
+            }).then(() => {
+                window.location.href = './index.php';
+            });
+        </script>";
     } else {
-        echo "<script>alert('Username not exist')</script>";
+        echo "<script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops!',
+                text: 'Invalid credentials. Try again.',
+                confirmButtonColor: '#62447E'
+            });
+        </script>";
     }
+} else {
+    echo "<script>
+        Swal.fire({
+            icon: 'warning',
+            title: 'Username not found 😢',
+            text: 'Please check your username and try again.',
+            confirmButtonColor: '#62447E'
+        });
+    </script>";
+}
 }
 ?>
+
+

@@ -1,6 +1,6 @@
 <?php
 include('../includes/connect.php');
-include('../functions/common_functions.php');
+include('../functions/common_function.php');
 session_start();
 
 if(isset($_SESSION['username'])){
@@ -43,8 +43,6 @@ if (isset($_GET['delete_user'])) {
 }
 
 ?>
-
-
 
 
 <!DOCTYPE html>
