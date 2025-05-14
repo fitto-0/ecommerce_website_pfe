@@ -103,7 +103,6 @@ if (isset($_GET['delete_user'])) {
                 <div class="col-md-2">
                     <div class="admin-image">
                         <img src="../users_area/user_images/<?php echo urlencode($user_image); ?>" class="img-thumbnail" alt="Admin Photo">
-                        <!--daba breb w matkhedmi ta nwerri l jedmok ana dssara-->
                         <p><?php echo $username;?></p>
                     </div>
                 </div>

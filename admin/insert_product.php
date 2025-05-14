@@ -172,6 +172,10 @@ if (isset($_POST['insert_product'])) {
                     <div class="form-outline mb-4">
                         <input type="submit" value="Insert Product" name="insert_product" class="btn btn-primary">
                     </div>
+                    <div class="form-outline mb-4">
+                        <a href="./index.php" class="btn btn-primary">Back</a>
+                    </div>
+
                 </div>
             </div>
         </form>

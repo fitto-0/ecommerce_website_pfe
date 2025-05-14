@@ -376,7 +376,7 @@ session_start();
                 </div>
                 <h2>Explore Our Products</h2>
             </div>
-            <div class="row mb-3">
+            <div class="row mb-4">
                 <?php
                 getProduct(3);
                 getIPAddress();
