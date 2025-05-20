@@ -4,7 +4,7 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 include('../includes/connect.php');
-include('../functions/common_function.php');
+//include(__DIR__ . '/../functions/common_function.php');
 ?>
 
 <!DOCTYPE html>
@@ -27,7 +27,7 @@ include('../functions/common_function.php');
     <div class="container-fluid p-0">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid">
-                <a class="navbar-brand" href="index.php">Diva's Bloom</a>
+                <a class="navbar-brand" href="../index.php">Diva's Bloom</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -35,7 +35,7 @@ include('../functions/common_function.php');
                 <div class="collapse navbar-collapse" id="navbarContent">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="index.php">Home</a>
+                            <a class="nav-link" href="../index.php">Home</a>
                         </li>
                         <?php
                         if (!isset($_SESSION['username'])) {
