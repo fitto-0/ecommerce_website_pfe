@@ -63,6 +63,9 @@ include('../functions/common_function.php');
                                 Already have an account? <a href="user_login.php" class="text-primary text-decoration-underline"><strong>Login</strong></a>
                             </p>
                         </div>
+                        <div class="form-outline mb-4">
+                        <a href="../index.php" class="btn btn-primary">Back</a>
+                    </div>
                     </form>
                 </div>
             </div>

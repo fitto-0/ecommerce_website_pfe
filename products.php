@@ -155,13 +155,14 @@ session_start();
                         </ul>
 
                     </div>
-                    <div class="col-md-4 mb-4"  style='display: flex; gap: 2rem;' >
+                    <div class="col-md-8 mb-6">
+                        <div style="display: flex; flex-direction: column; gap: 2rem; padding: 1rem; border-radius: 12px; background-color: #f8f9fa; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
                         <!-- products  -->
                         <div class="row">
                             <?php
                             getProduct();
                             filterCategoryProduct();
-                            filterBrandProduct();
+                            
                             $ip=getIPAddress();
                             cart();
                             ?>

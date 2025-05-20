@@ -39,6 +39,9 @@ include('../functions/common_function.php');
                                 Don't have an account? <a href="user_registration.php" class="text-primary text-decoration-underline"><strong>Register</strong></a>
                             </p>
                         </div>
+                        <div class="form-outline mb-4">
+                        <a href="../index.php" class="btn btn-primary">Back</a>
+                    </div>
                     </form>
                 </div>
             </div>

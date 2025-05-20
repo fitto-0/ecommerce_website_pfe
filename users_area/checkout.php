@@ -19,7 +19,7 @@ include('../functions/common_function.php');
     <script src="https://kit.fontawesome.com/40d2553a7a.js" crossorigin="anonymous"></script>
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 <body class="bg-light">
 
