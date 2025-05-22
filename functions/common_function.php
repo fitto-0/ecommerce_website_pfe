@@ -86,19 +86,21 @@ function filterCategoryProduct()
             $product_image_one = $row['product_image_one'];
             $product_price = $row['product_price'];
             $category_id = $row['category_id'];
-            $brand_id = $row['brand_id'];
+            //$brand_id = $row['brand_id'];
             echo "
         <div class='col-md-4 mb-2'>
         <div class='one-card'>
-            <div class='photo'>
-                <img src='./admin/product_images/$product_image_one' alt='$product_title'>
-                <button>
-                <a class='text-light' href='products.php?add_to_cart=$product_id'>Add To Cart</a>
-            </button>
-            <button>
-                <a class='text-light' href='product_details.php?product_id=$product_id'>View More</a>
-            </button>
+        <a href='product_details.php?product_id=$product_id' style='width: 200px; height: 200px; display: flex; align-items: center; justify-content: center; >
+        <div class='photo'>
+                <img src='./admin/product_images/$product_image_one' alt='$product_title' style=' width: 150px;'>
+                <button style='display: none'>
+                    <a class='text-light' href='products.php?add_to_cart=$product_id'>Add To Cart</a>
+                </button>
+                <button style='display: none'>
+                    <a class='text-light' href='product_details.php?product_id=$product_id'>View More</a>
+                </button>
             </div>
+        </a>
             <div class='content'>
                 <span class='title fw-bold'>$product_title</span>
                 <div class='desc'>
@@ -323,7 +325,7 @@ function viewDetails()
                     $product_image_three = $row['product_image_three'];
                     $product_price = $row['product_price'];
                     $category_id = $row['category_id'];
-                    $brand_id = $row['brand_id'];
+                    //$brand_id = $row['brand_id'];
                     echo "
                     <div class='row mx-0 justify-content-md-center gap-3 gap-md-0'>
                     <div class='col-md-2'>

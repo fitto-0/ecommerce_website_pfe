@@ -12,6 +12,7 @@ session_start();
     <title>Ecommerce Products</title>
     <link rel="stylesheet" href="./assets/css/bootstrap.css" />
     <link rel="stylesheet" href="./assets/css/main.css" />
+    <link rel="stylesheet" href="./assets/css/animations.css" />
 </head>
 
 <body>

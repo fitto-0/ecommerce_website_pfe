@@ -27,7 +27,10 @@ include('../includes/connect.php');
     <div class="container-fluid p-0">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid">
-                <a class="navbar-brand" href="../index.php">Diva's Bloom</a>
+                <a class="navbar-brand d-flex align-items-center gap-2" href="../index.php">
+                <img src="../assets/images/Group 32.png" alt="Diva's Bloom Logo" style="height: 60px;">
+                <span class="fw-bold"></span>
+                </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -51,13 +54,24 @@ include('../includes/connect.php');
 
         <!-- Welcome Message -->
         <div class="bg-secondary text-white p-2 text-center">
-            <?php
-            if (!isset($_SESSION['username'])) {
-                echo "<h5>Welcome Guest!</h5>";
-            } else {
-                echo "<h5>Welcome <span class='text-warning'>" . htmlspecialchars($_SESSION['username']) . "</span></h5>";
-            }
-            ?>
+            <li class="nav-item">
+                        <a class="nav-link" class="d-flex align-items-center gap-1" href="#">
+                            <svg width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M24 27V24.3333C24 22.9188 23.5224 21.5623 22.6722 20.5621C21.8221 19.5619 20.669 19 19.4667 19H11.5333C10.331 19 9.17795 19.5619 8.32778 20.5621C7.47762 21.5623 7 22.9188 7 24.3333V27" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M16.5 14C18.9853 14 21 11.9853 21 9.5C21 7.01472 18.9853 5 16.5 5C14.0147 5 12 7.01472 12 9.5C12 11.9853 14.0147 14 16.5 14Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                            <?php
+                                if(!isset($_SESSION['username'])){
+                                    echo "<span>
+                                    Welcome guest
+                                </span>";
+                            }else{
+                                    echo "<span>
+                                    Welcome ".$_SESSION['username']. "</span>";
+                                }
+                                ?>
+                        </a>
+                    </li>
         </div>
     </div>
 
@@ -78,23 +92,23 @@ include('../includes/connect.php');
     </div>
 
     <!-- Optional Cart Preview (You can uncomment these if needed) -->
-    <!--
+    <!-- -->
     <div class="container my-4">
         <div class="row">
             <div class="col-md-12 text-center">
                 <?php
-                // cart_item();
-                // total_cart_price();
+                 cart_item();
+                 total_cart_price();
                 ?>
             </div>
         </div>
     </div>
-    -->
+    
 
-    <!-- Footer -->
+    <!-- Footer 
     <footer class="bg-dark text-white text-center p-3">
         <small>&copy; 2025 Diva's Bloom. All Rights Reserved.</small>
-    </footer>
+    </footer>-->
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
