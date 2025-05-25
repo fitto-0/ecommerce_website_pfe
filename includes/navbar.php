@@ -1,26 +1,31 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
-        <a class="navbar-brand d-flex align-items-center gap-2" href="./index.php">
+<!-- Start NavBar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" data-aos="fade-in" data-aos-delay="200" data-aos-duration="1000">
+        <div class="container" style="border: 2px solid #B99CC8; border-radius: 16px; padding: 15px; box-shadow: 0 4px 8px rgba(185, 156, 200, 0.2);" data-aos="fade-in" data-aos-delay="200" data-aos-duration="1000">
+
+            <a class="navbar-brand d-flex align-items-center gap-2" href="./index.php">
                 <img src="assets/images/Group 32.png" alt="Diva's Bloom Logo" style="height: 60px;">
                 <span class="fw-bold"></span>
             </a>
+
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
+                    <li class="nav-item" data-aos="fade-in" data-aos-delay="200" data-aos-duration="1000">
                         <a class="nav-link active" aria-current="page" href="./index.php">Home</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" data-aos="fade-in" data-aos-delay="200" data-aos-duration="1000">
                         <a class="nav-link" href="./products.php">Products</a>
                     </li>
-                    <li class="nav-item">      
+                    <!--<li class="nav-item" data-aos="fade-in" data-aos-delay="200" data-aos-duration="1000">
+                       
                             <a class="nav-link" href="./about.php">About</a>
+                        
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" data-aos="fade-in" data-aos-delay="200" data-aos-duration="1000">
                         <a class="nav-link" href="./contact.php">Contact</a>
-                    </li>
+                    </li>-->
                     <?php
                         if(isset($_SESSION['username'])){                            
                             echo "
@@ -30,7 +35,7 @@
                         }
                         else{
                             echo "
-                            <li class='nav-item'>
+                            <li class='nav-item' >
                             <a class='nav-link' href='./users_area/user_registration.php'>Register</a>
                         </li>";
                         }
@@ -40,6 +45,7 @@
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-primary" type="submit">Search</button>
                 </form>
+                
                 <ul class="navbar-nav mb-2 mb-lg-0">
                     <li class="nav-item">
                         <a class="nav-link" href="./cart.php"><svg width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -98,3 +104,5 @@
             </div>
         </div>
     </nav>
+    <!-- End NavBar -->
+

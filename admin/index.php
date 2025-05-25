@@ -64,31 +64,10 @@ if (isset($_GET['delete_user'])) {
     </div>
     <!-- upper-nav -->
     <!-- Start NavBar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
-        <a class="navbar-brand d-flex align-items-center gap-2" href="./index.php">
-                <img src="./admin_images/Group 32.png" alt="Diva's Bloom Logo" style="height: 60px;">
-                <span class="fw-bold"></span>
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContentad" aria-controls="navbarSupportedContentad" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContentad">
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="./index.php">Welcome <?php echo $username;?></a>
-                    </li>
-                    <li class="nav-item">
-                    <button class="btn btn-primary p-0 px-1">
-                            <a href="./admin_logout.php" class="nav-link text-light">Logout</a>
-                        </button>
-                    </li>
-                </ul>
-                
-            </div>
-        </div>
-    </nav>
-    <!--wa wikwiiiiiiiik a 3ibad lah -->
+    <?php 
+    include('./includes/navbar.php');
+    ?>
+    
     <!-- End NavBar -->
     <!-- Start Control Buttons -->
     <div class="control">
