@@ -1,9 +1,9 @@
 <!-- Start NavBar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light" data-aos="fade-in" data-aos-delay="200" data-aos-duration="1000">
-        <div class="container" style="border: 2px solid #B99CC8; border-radius: 16px; padding: 15px; box-shadow: 0 4px 8px rgba(185, 156, 200, 0.2);" data-aos="fade-in" data-aos-delay="200" data-aos-duration="1000">
+        <div class="container" style="border: 2px solid #B99CC8; border-radius: 16px; padding: 7px; box-shadow: 0 4px 8px rgba(185, 156, 200, 0.2);" data-aos="fade-in" data-aos-delay="200" data-aos-duration="1000">
 
             <a class="navbar-brand d-flex align-items-center gap-2" href="./index.php">
-                <img src="assets/images/Group 32.png" alt="Diva's Bloom Logo" style="height: 60px;">
+                <img src="assets/images/Logo.png" alt="Diva's Bloom Logo" style="height: 60px;">
                 <span class="fw-bold"></span>
             </a>
 

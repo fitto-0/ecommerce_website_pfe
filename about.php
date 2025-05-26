@@ -21,7 +21,7 @@ session_start();
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
         <a class="navbar-brand d-flex align-items-center gap-2" href="./index.php">
-                <img src="assets/images/Group 32.png" alt="Diva's Bloom Logo" style="height: 60px;">
+                <img src="assets/images/Logo.png" alt="Diva's Bloom Logo" style="height: 60px;">
                 <span class="fw-bold"></span>
             </a>
             

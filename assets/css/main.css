@@ -20,7 +20,7 @@ html {
 
 
 body {
-    background-color: #fff5ff;
+    background-color:rgb(234, 234, 234);
     /* font-family: "regular","sans-serif"; */
 }
 
@@ -39,7 +39,7 @@ ul {
 }
 
 .primary-bg {
-    background-color: #c02675;
+    background-color: #62447E;
 }
 
 .primary-1 {
@@ -51,14 +51,14 @@ ul {
 }
 
 .secondry-1 {
-    background-color:#9a0050;
+    background-color:#210B25;
 }
 
 .text-1 {
     color: #7D8184;
 }
 .text-2 {
-    color: #c02675;
+    color: #62447E;
 }
 .text-3 {
     color: #212529 !important;
@@ -93,7 +93,7 @@ ul {
 .container .categ-header .sub-title span:nth-of-type(1) {
     width: 18px;
     height: 35px;
-    background-color: #c02675;
+    background-color: #62447E;
     border-radius: 4px;
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
@@ -104,7 +104,7 @@ ul {
     display: inline-block;
     width: 18px;
     height: 35px;
-    background-color: #c02675;
+    background-color: #62447E;
     border-radius: 4px;
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
@@ -113,7 +113,7 @@ ul {
 }
 
 .container .categ-header .sub-title span:nth-of-type(2) {
-    color: #c02675;
+    color: #62447E;
     font-weight: bold;
 }
 
@@ -169,7 +169,7 @@ ul {
     -o-border-radius: 0px 0px 0px 4px;
 }
 .one-card .photo button:nth-child(3) {
-    background-color: #c02675;
+    background-color: #62447E;
     border-radius: 0px 0px 4px 0px;
     right: 0;
     -webkit-border-radius: 0px 0px 4px 0px;
@@ -198,7 +198,7 @@ ul {
 }
 
 .one-card .content .desc span:nth-of-type(1) {
-    color: #c02675;
+    color: #62447E;
 }
 
 .one-card .content .desc span:nth-of-type(2) {
@@ -225,7 +225,7 @@ ul {
 /* Start NavBar */
 .bg-light {
     background-color: #ffffff !important;
-    border-bottom: 1px solid #c02675;
+    border-bottom: 1px solid #62447E;
 }
 
 .navbar .d-flex .form-control {
@@ -234,7 +234,7 @@ ul {
 }
 
 .navbar .d-flex .btn-outline-primary {
-    background-color: #c02675;
+    background-color: #62447E;
     color: #ffffff;
     border: none;
 }
@@ -246,7 +246,7 @@ ul {
 */
 /* Start Landing Section  */
 .landing .container .row .cover {
-    background-image: url("../images/chawcha3.png");
+    background-image: url("../images/bgfirst.jpg");
     background-size: cover;
     height: 100%;
     display: flex;
@@ -267,7 +267,7 @@ ul {
 }
 
 .landing .container .row .tabs-categ ul {
-    border-right: 1px solid #c02675;
+    border-right: 1px solid #62447E;
     width: 80%;
 }
 
@@ -309,7 +309,7 @@ ul {
 .category .container .categ-header .sub-title span:nth-of-type(1) {
     width: 18px;
     height: 35px;
-    background-color: #c02675;
+    background-color: #62447E;
     border-radius: 4px;
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
@@ -318,7 +318,7 @@ ul {
 }
 
 .category .container .categ-header .sub-title span:nth-of-type(2) {
-    color: #c02675;
+    color: #62447E;
     font-weight: bold;
 }
 
@@ -343,7 +343,7 @@ ul {
 }
 
 .category .container .cards .card:hover {
-    background-color: #c02675;
+    background-color: #62447E;
     color: #ffffff;
 }
 
@@ -484,7 +484,7 @@ ul {
 }
 
 .products .container .cards .one-card .content .desc span:nth-of-type(1) {
-    color: #c02675;
+    color: #62447E;
 }
 
 .products .container .cards .one-card .content .desc span:nth-of-type(2) {
@@ -498,7 +498,7 @@ ul {
 
 .products .container .view button {
     padding: 12px 28px;
-    background-color: #c02675;
+    background-color: #62447E;
     color: #ffffff;
     border: none;
     border-radius: 4px;
@@ -588,7 +588,7 @@ ul {
     color: #00FF66;
 }
 .out-stack{
-    color: #c02675;
+    color: #62447E;
 }
 .prod-details .buy-item .num-btns .btn-increase,
 .prod-details .buy-item .num-btns .btn-decrease{
@@ -598,7 +598,7 @@ ul {
 }
 .prod-details .buy-item .num-btns .btn-increase:hover,
 .prod-details .buy-item .num-btns .btn-decrease:hover{
-    background-color: #c02675;
+    background-color: #62447E;
     color: #ffffff;
     border: none;
 }
@@ -644,11 +644,11 @@ td {
 /* End Admin register & login  */
 
 .navbar-brand{
-    color: #c02675;
+    color: #62447E;
 }
 
 .navbar-brand:hover{
-    color: #c02675;
+    color: #62447E;
 }
 
 .register {
@@ -658,7 +658,7 @@ td {
 }
 
 .register h2 {
-    color: #c02675;
+    color: #62447E;
     font-weight: 700;
 }
 
@@ -680,26 +680,26 @@ td {
 }
 
 .form-outline input:focus {
-    border-color: #c02675;
+    border-color: #62447E;
     box-shadow: 0 0 0 0.2rem rgba(192, 38, 117, 0.25);
 }
 
 .btn-primary {
-    background-color: #c02675;
+    background-color: #62447E;
     border: none;
     border-radius: 12px;
     transition: background-color 0.3s ease;
 }
 
 .btn-primary:hover {
-    background-color: #a01f61;
+    background-color: #62447E;
 }
 
 .text-primary {
-    color: #c02675 !important;
+    color: #62447E !important;
 }
 
 .text-primary:hover {
     text-decoration: none;
-    color: #a01f61 !important;
+    color: #62447E !important;
 }

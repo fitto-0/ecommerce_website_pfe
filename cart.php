@@ -98,7 +98,7 @@ if (isset($_POST['update_qty'])) {
             <th>Price</th>
             <th>Quantity</th>
             <th>Subtotal</th>
-            <th>Update</th>
+            
             <th>Remove</th>
         </tr>
     </thead>
@@ -122,7 +122,7 @@ if (isset($_POST['update_qty'])) {
                 $product_title = $product['product_title'];
                 $product_image_one = $product['product_image_one'];
                 $product_price = $product['product_price'];
-                $subtotal = $product_price * $qty;
+                $subtotal = $product_price * $product_id;
                 $total += $subtotal;
 
                 echo "
@@ -132,14 +132,11 @@ if (isset($_POST['update_qty'])) {
                     <td>$product_price $</td>
                     <td>
                         <form method='POST'>
-                            <input type='number' name='quantity' value='$qty' min='1'>
-                            <input type='hidden' name='update_id' value='$product_id'>
+                            $product_id
+                            
                     </td>
                     <td>$subtotal $</td>
-                    <td>
-                            <button type='submit' name='update_qty' class='btn-update'>Update</button>
-                        </form>
-                    </td>
+                    
                     <td>
                         <form method='POST'>
                             <input type='hidden' name='remove_id' value='$product_id'>

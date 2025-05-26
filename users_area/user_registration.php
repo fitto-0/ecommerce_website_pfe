@@ -3,78 +3,132 @@ include('../includes/connect.php');
 include('../functions/common_function.php');
 ?>
 
+<!-- Same PHP includes -->
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Diva's Bloom Registeration Page</title>
-    <link rel="stylesheet" href="../assets/css/bootstrap.css" />
-    <link rel="stylesheet" href="../assets/css/main.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Diva's Bloom Registration</title>
+  <link rel="stylesheet" href="../assets/css/bootstrap.css" />
+  <link rel="stylesheet" href="../assets/css/main.css" />
+  <style>
+    body {
+      background: #FFF9E2;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .register {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-image: linear-gradient(to right, #EBECCC, #FEECD0);
+    }
+
+    .register .form-container {
+      background-color: white;
+      padding: 2.5rem;
+      border-radius: 1.5rem;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 600px;
+    }
+
+    .form-label {
+      font-weight: 500;
+      color: #210B25;
+    }
+
+    .form-control {
+      border-radius: 10px;
+      border: 1px solid #ddd;
+      padding: 0.75rem;
+    }
+
+    .btn-primary {
+      background-color: #DCA278;
+      border: none;
+      padding: 0.6rem 1.5rem;
+      border-radius: 1rem;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn-primary:hover {
+      background-color: #b3704f;
+    }
+
+    h2 {
+      font-weight: bold;
+      color: #62447E;
+    }
+
+    a.text-primary {
+      color: #B99CC8 !important;
+    }
+
+    a.text-primary:hover {
+      text-decoration: none;
+      color: #62447E !important;
+    }
+  </style>
 </head>
-
 <body>
-
-    <div class="register">
-        <div class="container py-3">
-            <h2 class="text-center mb-4">New User Registration</h2>
-            <div class="row justify-content-center">
-                <div class="col-lg-6">
-                    <form action="" method="post" enctype="multipart/form-data" class="d-flex flex-column gap-4">
-                        <!-- username field  -->
-                        <div class="form-outline">
-                            <label for="user_username" class="form-label">Username</label>
-                            <input type="text" placeholder="Enter your username" autocomplete="off" required="required" name="user_username" id="user_username" class="form-control">
-                        </div>
-                        <!-- email field  -->
-                        <div class="form-outline">
-                            <label for="user_email" class="form-label">Email</label>
-                            <input type="email" placeholder="Enter your email" autocomplete="off" required="required" name="user_email" id="user_email" class="form-control">
-                        </div>
-                        <!-- image field  -->
-                        <div class="form-outline">
-                            <label for="user_image" class="form-label">User Image</label>
-                            <input type="file" required="required" name="user_image" id="user_image" class="form-control">
-                        </div>
-                        <!-- password field  -->
-                        <div class="form-outline">
-                            <label for="user_password" class="form-label">Password</label>
-                            <input type="password" placeholder="Enter your password" autocomplete="off" required="required" name="user_password" id="user_password" class="form-control">
-                        </div>
-                        <!-- confirm password field  -->
-                        <div class="form-outline">
-                            <label for="conf_user_password" class="form-label">Confirm Password</label>
-                            <input type="password" placeholder="Confirm your password" autocomplete="off" required="required" name="conf_user_password" id="conf_user_password" class="form-control">
-                        </div>
-                        <!-- address field  -->
-                        <div class="form-outline">
-                            <label for="user_address" class="form-label">Address</label>
-                            <input type="text" placeholder="Enter your address" autocomplete="off" required="required" name="user_address" id="user_address" class="form-control">
-                        </div>
-                        <!-- mobile field  -->
-                        <div class="form-outline">
-                            <label for="user_mobile" class="form-label">Mobile</label>
-                            <input type="text" placeholder="Enter your mobile" autocomplete="off" required="required" name="user_mobile" id="user_mobile" class="form-control">
-                        </div>
-                        <div>
-                            <input type="submit" value="Register" class="btn btn-primary mb-2" name="user_register">
-                            <p>
-                                Already have an account? <a href="user_login.php" class="text-primary text-decoration-underline"><strong>Login</strong></a>
-                            </p>
-                        </div>
-                        <div class="form-outline mb-4">
-                        <a href="../index.php" class="btn btn-primary">Back</a>
-                    </div>
-                    </form>
-                </div>
-            </div>
+  <div class="register">
+    <div class="form-container">
+      <h2 class="text-center mb-4">Create Your Account</h2>
+      <form action="" method="post" enctype="multipart/form-data" class="d-flex flex-column gap-3">
+        <div>
+          <label for="user_username" class="form-label">Username</label>
+          <input type="text" name="user_username" id="user_username" class="form-control" placeholder="Enter your username" required>
         </div>
-    </div>
-    <script src="./assets//js/bootstrap.bundle.js"></script>
-</body>
 
+        <div>
+          <label for="user_email" class="form-label">Email</label>
+          <input type="email" name="user_email" id="user_email" class="form-control" placeholder="Enter your email" required>
+        </div>
+
+        <div>
+          <label for="user_image" class="form-label">Profile Picture</label>
+          <input type="file" name="user_image" id="user_image" class="form-control" required>
+        </div>
+
+        <div>
+          <label for="user_password" class="form-label">Password</label>
+          <input type="password" name="user_password" id="user_password" class="form-control" placeholder="Create password" required>
+        </div>
+
+        <div>
+          <label for="conf_user_password" class="form-label">Confirm Password</label>
+          <input type="password" name="conf_user_password" id="conf_user_password" class="form-control" placeholder="Re-enter password" required>
+        </div>
+
+        <div>
+          <label for="user_address" class="form-label">Address</label>
+          <input type="text" name="user_address" id="user_address" class="form-control" placeholder="Where do you live?" required>
+        </div>
+
+        <div>
+          <label for="user_mobile" class="form-label">Mobile</label>
+          <input type="text" name="user_mobile" id="user_mobile" class="form-control" placeholder="Phone number" required>
+        </div>
+
+        <div class="d-flex flex-column align-items-center gap-2 mt-3">
+          <input type="submit" name="user_register" value="Register" class="btn btn-primary w-100"/>
+          <p class="text-center">Already have an account? 
+            <a href="user_login.php" class="text-primary"><strong>Login</strong></a>
+          </p>
+          <a href="../index.php" class="btn btn-outline-secondary w-100">Back to Home</a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="../assets/js/bootstrap.bundle.js"></script>
+</body>
 </html>
+
 <!-- php code  -->
 <?php
 if (isset($_POST['user_register'])) {
