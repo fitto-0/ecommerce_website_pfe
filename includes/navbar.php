@@ -12,11 +12,14 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-                    <li class="nav-item" data-aos="fade-in" data-aos-delay="200" data-aos-duration="1000">
-                        <a class="nav-link active" aria-current="page" href="./index.php">Home</a>
+                    <?php
+                    $current_page = basename($_SERVER['PHP_SELF']);
+                    ?>
+                    <li class="nav-item">
+                        <a class="nav-link <?php if($current_page == 'index.php') echo 'active'; ?>" href="./index.php">Home</a>
                     </li>
-                    <li class="nav-item" data-aos="fade-in" data-aos-delay="200" data-aos-duration="1000">
-                        <a class="nav-link" href="./products.php">Products</a>
+                    <li class="nav-item">
+                        <a class="nav-link <?php if($current_page == 'products.php') echo 'active'; ?>" href="./products.php">Products</a>
                     </li>
                     <!--<li class="nav-item" data-aos="fade-in" data-aos-delay="200" data-aos-duration="1000">
                        
@@ -41,9 +44,9 @@
                         }
                     ?>
                 </ul>
-                <form class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-primary" type="submit">Search</button>
+                <form class="d-flex" method="GET" action="">
+                    <input class="form-control me-2" type="search" placeholder="Search" name="search_data" aria-label="Search">
+                    <button class="btn btn-outline-primary" type="submit" name="search_data_btn">Search</button>
                 </form>
                 
                 <ul class="navbar-nav mb-2 mb-lg-0">
@@ -55,10 +58,15 @@
                                 <path d="M10 16.6667H25.59C25.7056 16.6667 25.8177 16.6267 25.9072 16.5535C25.9966 16.4802 26.0579 16.3782 26.0806 16.2648L27.8806 7.26479C27.8951 7.19222 27.8934 7.11733 27.8755 7.04552C27.8575 6.97371 27.8239 6.90678 27.7769 6.84956C27.73 6.79234 27.6709 6.74625 27.604 6.71462C27.5371 6.68299 27.464 6.66661 27.39 6.66666H8" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                             </svg>
                             <sup>
-                                <?php
-                                cart_item();
-                                ?>
+                            <?php
+                            
+                            cart_item(); 
+                            
+
+                            
+                            ?>
                             </sup>
+
                             <span class="d-none">
                                 Total Price is: 
                                 <?php

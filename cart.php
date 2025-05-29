@@ -2,6 +2,8 @@
 include('./includes/connect.php');
 include('./functions/common_function.php');
 
+
+
 // Handle item removal
 if (isset($_POST['remove_item'])) {
     $remove_id = $_POST['remove_id'];
