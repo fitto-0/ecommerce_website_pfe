@@ -17,9 +17,11 @@ session_start();
 </head>
 
 <body>
-<div class="upper-nav primary-bg p-2 px-3 text-center text-break">
+    <div class="upper-nav primary-bg p-2 px-3 text-center text-break">
         <span>Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%! <a>Shop Now</a></span>
     </div>
+    <?php
+    include('./includes/navbar.php'); ?>
     
     </nav>
     <div>
@@ -42,7 +44,7 @@ session_start();
                     <label for="message">Your Message</label>
                     <textarea id="contact-message" name="message" rows="5" placeholder="Enter your message" required></textarea>
                 </div>
-                <button type="submit" class="btn-submit">Send Message</button>
+                <button type="submit" class="btn btn-outline-dark rounded-pill px-4 py-2">Send Message</button>
             </form>
         </div>
     </section>

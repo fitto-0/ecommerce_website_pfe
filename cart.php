@@ -137,6 +137,7 @@ if (isset($_POST['update_qty'])) {
                             $product_id
                             
                     </td>
+                    
                     <td>$subtotal $</td>
                     
                     <td>
@@ -178,4 +179,5 @@ if (isset($_POST['update_qty'])) {
 
 
 </body>
+<script src="./assets/js/script.js"></script>
 </html>

@@ -5,6 +5,12 @@
 } */
 /* Global Fonts */
 /* Global Rules */
+@font-face {
+  font-family: 'TheSeasons';
+  src: url('./assets/Demo_Fonts/Fontspring-DEMO-theseasons-bd.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
 * {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -74,6 +80,15 @@ ul {
     width: 100%;
     margin-top: 30px;
     margin-bottom: 40px;
+}
+
+.container1{
+    font-family: 'Playfair Display', serif;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+    text-align: center;
 }
 
 .container .categ-header {

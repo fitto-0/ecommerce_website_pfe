@@ -13,8 +13,8 @@ session_start();
     <link rel="stylesheet" href="./assets/css/bootstrap.css" />
     <link rel="stylesheet" href="./assets/css/main.css" />
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
-
+     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter&display=swap" rel="stylesheet">
+  
 </head>
 
 <body>
@@ -26,16 +26,16 @@ session_start();
     <?php
     include('./includes/navbar.php');
     ?>
-
+    
     <!-- Start Landing Section -->
     <section class="hero-section d-flex align-items-center text-center" style="background-image: url('./assets/images/bgsecond.jpeg'); background-repeat: no-repeat; background-position: center; background-size: cover; height: 90vh;">
-        <div class="container">
+        <div class="container1">
             <h1 class="display-4 fw-bold text-black" data-aos="fade-in">Glow Like Never Before </h1>
             <p class="lead text-dark" data-aos="fade-in" data-aos-delay="200">Discover premium beauty picks that love you back.</p>
             <a href="./products.php" class="btn btn-outline-dark rounded-pill px-4 py-2" style="border-color: #62447E; color: #62447E;">Shop Now</a>
         </div>
     </section>
-
+    
     <!-- End Landing Section -->
 
 

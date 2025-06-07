@@ -4,7 +4,7 @@
 }
 .about-title {
     font-size: 2.5rem;
-    color: #d63384; /* Vibrant pink color */
+    color: #62447E; /* Vibrant pink color */
 }
 .about-description {
     font-size: 1.2rem;
@@ -22,7 +22,7 @@
 }
 .icon-box i {
     font-size: 2rem;
-    color: #d63384; /* Vibrant pink color */
+    color: #62447E; /* Vibrant pink color */
 }
 .icon-box p {
     margin-top: 10px;
@@ -37,7 +37,7 @@
 }
 .contact-title {
     font-size: 2.5rem;
-    color: #d63384; /* Vibrant pink color */
+    color: #62447E; /* Vibrant pink color */
 }
 .contact-description {
     font-size: 1.2rem;
@@ -72,7 +72,7 @@
     border-radius: 4px;
 }
 .btn-submit {
-    background-color: #d63384; /* Vibrant pink color */
+    background-color: #62447E; /* Vibrant pink color */
     color: #fff;
     border: none;
     padding: 10px 20px;
