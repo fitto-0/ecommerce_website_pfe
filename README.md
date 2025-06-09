@@ -38,8 +38,8 @@ git clone https://github.com/fitto-0/ecommerce_website_pfe.git
 3. **Set up the database**:
 
    * Open phpMyAdmin
-   * Create a new database named `divas_bloom`
-   * Import the `divas_bloom.sql` file
+   * Create a new database named `ecommerce`
+   * Import the `ecommerce1.sql` file
 
 4. **Configure DB connection**:
 
