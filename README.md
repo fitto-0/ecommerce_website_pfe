@@ -55,8 +55,8 @@ git clone https://github.com/fitto-0/ecommerce_website_pfe.git
 
 ## 🛠️ Built With
 
-* **HTML5** / **CSS3**
-* **JavaScript**
+* **HTML5** / **CSS3** (**Bootstrap**)
+* **JavaScript** (**AOS**/**SweetAlerts**)
 * **PHP (Vanilla)**
 * **MySQL**
 * **phpMyAdmin** (for DB management)
@@ -85,7 +85,7 @@ Inspired by beauty, simplicity, and women-led entrepreneurship.
 ## 📬 Contact
 
 For any inquiries or collaboration ideas, contact me at:
-📧 [fatimazahra@example.com](mailto:fittothediva@gmail.com)
+📧 [fittothediva@gmail.com](mailto:fittothediva@gmail.com)
 
 
 ---
