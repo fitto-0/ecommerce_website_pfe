@@ -13,7 +13,25 @@ if (isset($_POST['remove_item'])) {
     $stmt->bind_param("is", $remove_id, $ip);
     $stmt->execute();
 
-    echo "<script>window.location.href='cart.php';</script>";
+    echo "<script>
+            Swal.fire({
+            title: 'Added to Cart!',
+            text: 'Your product is waiting for you 🛒',
+            icon: 'success',
+            confirmButtonText: 'Take me there!',
+            background: '#f3e8ff', // soft purple background
+            color: '#4b0082', // deep purple text
+            confirmButtonColor: '#a78bfa', // lavender confirm button
+            customClass: {
+                popup: 'rounded-xl shadow-lg'
+            }
+            }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = 'cart.php';
+            }
+            });
+        </script>
+    ";
 }
 
 // Handle quantity update
@@ -26,7 +44,25 @@ if (isset($_POST['update_qty'])) {
     $stmt->bind_param("iis", $qty, $update_id, $ip);
     $stmt->execute();
 
-    echo "<script>window.location.href='cart.php';</script>";
+    echo "<script>
+            Swal.fire({
+            title: 'Added to Cart!',
+            text: 'Your product is waiting for you 🛒',
+            icon: 'success',
+            confirmButtonText: 'Take me there!',
+            background: '#f3e8ff', // soft purple background
+            color: '#4b0082', // deep purple text
+            confirmButtonColor: '#a78bfa', 
+            customClass: {
+                popup: 'rounded-xl shadow-lg'
+            }
+            }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = 'cart.php';
+            }
+            });
+        </script>
+    ";
 }
 ?>
 
@@ -61,9 +97,6 @@ if (isset($_POST['update_qty'])) {
 </head>
 <body>
 
-<?php 
-
-?>
 
 <h2>Your Cart 🛍️</h2>
 
@@ -133,8 +166,8 @@ if (isset($_POST['update_qty'])) {
                     <td><img src='./admin/product_images/$product_image_one' alt='$product_title'></td>
                     <td>$product_price $</td>
                     <td>
-                        <form method='POST'>
-                            $product_id
+
+                         $product_id
                             
                     </td>
                     
@@ -180,4 +213,6 @@ if (isset($_POST['update_qty'])) {
 
 </body>
 <script src="./assets/js/script.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </html>

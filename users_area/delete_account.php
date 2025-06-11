@@ -13,18 +13,54 @@
             </div>
         </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <?php
 $username_session = $_SESSION['username'];
+
 if (isset($_POST['submit_delete'])) {
     $delete_query = "DELETE FROM `user_table` WHERE username='$username_session'";
-    $delete_result = mysqli_query($con,$delete_query);
-    if($delete_result){
+    $delete_result = mysqli_query($con, $delete_query);
+
+    if ($delete_result) {
         session_destroy();
-        echo "<script>window.alert('Account deleted successfully');</script>";
-        echo "<script>window.open('../index.php','_self');</script>";
+        echo "
+        <script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+        <script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Account Deleted 💔',
+            text: 'We’re sad to see you go...',
+            confirmButtonText: 'Goodbye',
+            background: '#F3E8FF',
+            color: '#4B0082',
+            confirmButtonColor: '#6B21A8',
+        }).then(() => {
+            window.location.href = '../index.php';
+        });
+        </script>
+        ";
     }
 }
+
 if (isset($_POST['submit_dont_delete'])) {
-    echo "<script>window.open('./profile.php','_self');</script>";
+    echo "
+    <script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+    <script>
+    Swal.fire({
+        icon: 'info',
+        title: 'Yay! 🥰',
+        text: 'Glad you’re staying with us.',
+        background: '#F3E8FF',
+        color: '#4B0082',
+        confirmButtonColor: '#6B21A8',
+        confirmButtonText: 'Back to Profile'
+    }).then(() => {
+        window.location.href = './profile.php';
+    });
+    </script>
+    ";
 }
+
+
 ?>

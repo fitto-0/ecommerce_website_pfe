@@ -61,8 +61,6 @@ session_start();
         </div>
     </section>
 
-
-
     <!-- Start Category  -->
     <section class="category">
   <div class="container">

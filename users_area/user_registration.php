@@ -126,6 +126,8 @@ include('../functions/common_function.php');
   </div>
 
   <script src="../assets/js/bootstrap.bundle.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </body>
 </html>
 
@@ -135,32 +137,78 @@ if (isset($_POST['user_register'])) {
     $user_username = $_POST['user_username'];
     $user_email = $_POST['user_email'];
     $user_password = $_POST['user_password'];
-    $hash_password = password_hash($user_password,PASSWORD_DEFAULT);
+    $hash_password = password_hash($user_password, PASSWORD_DEFAULT);
     $conf_user_password = $_POST['conf_user_password'];
     $user_address = $_POST['user_address'];
     $user_mobile = $_POST['user_mobile'];
     $user_image = $_FILES['user_image']['name'];
     $user_image_tmp = $_FILES['user_image']['tmp_name'];
     $user_ip = getIPAddress();
-    // check if user exist or not
+
+    // check if user already exists
     $select_query = "SELECT * FROM `user_table` WHERE username='$user_username' OR user_email='$user_email'";
     $select_result = mysqli_query($con, $select_query);
     $rows_count = mysqli_num_rows($select_result);
+
     if ($rows_count > 0) {
-        echo "<script>window.alert('Username | Email already exist');</script>";
+        echo "
+        <script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+        <script>
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops! 🚫',
+            text: 'Username or email already exists.',
+            background: '#F3E8FF',
+            color: '#6B21A8',
+            confirmButtonColor: '#A855F7'
+        });
+        </script>
+        ";
     } else if ($user_password != $conf_user_password) {
-        echo "<script>window.alert('Passwords are not match');</script>";
+        echo "
+        <script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+        <script>
+        Swal.fire({
+            icon: 'warning',
+            title: 'Mismatch 😬',
+            text: 'Passwords do not match.',
+            background: '#F3E8FF',
+            color: '#6B21A8',
+            confirmButtonColor: '#A855F7'
+        });
+        </script>
+        ";
     } else {
-        // insert query
+        // insert user
         move_uploaded_file($user_image_tmp, "./user_images/$user_image");
-        $insert_query = "INSERT INTO `user_table` (username,user_email,user_password,user_image,user_ip,user_address,user_mobile) VALUES ('$user_username','$user_email','$hash_password','$user_image','$user_ip','$user_address','$user_mobile')";
+        $insert_query = "INSERT INTO `user_table` (username, user_email, user_password, user_image, user_ip, user_address, user_mobile) 
+                         VALUES ('$user_username', '$user_email', '$hash_password', '$user_image', '$user_ip', '$user_address', '$user_mobile')";
         $insert_result = mysqli_query($con, $insert_query);
+
         if ($insert_result) {
-            echo "<script>window.alert('User added successfully');</script>";
+            echo "
+            <script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+            <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Welcome to the Fam 🎉',
+                text: 'Your account has been created successfully!',
+                background: '#F3E8FF',
+                color: '#6B21A8',
+                confirmButtonColor: '#A855F7',
+                confirmButtonText: 'Let’s Go!'
+            }).then(() => {
+                window.location.href = 'login.php';
+            });
+            </script>
+            ";
         } else {
             die(mysqli_error($con));
         }
     }
+}
+
+
     // //select cart items check if items in cart go to checkout !| go to index.php
     // $select_cart_items = "SELECT * FROM `card_details` WHERE ip_address='$user_ip'";
     // $select_cart_items_result = mysqli_query($con,$select_cart_items);
@@ -172,5 +220,5 @@ if (isset($_POST['user_register'])) {
     // }else{
     //     echo "<script>window.open('../index.php','_self');</script>";
     // }
-}
+
 ?>

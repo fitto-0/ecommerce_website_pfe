@@ -32,10 +32,6 @@ session_start();
         <div class="container">
             <div class="sub-container pt-4 pb-4">
                 <div class="categ-header">
-                    <div class="sub-title">
-                        <span class="shape"></span>
-                        <span class="title">Categories</span>
-                    </div>
                     <h2>Browse By Category</h2>
                 </div>
                 <div class="row mx-0">
@@ -105,6 +101,8 @@ session_start();
     <!-- End Footer -->
 
     <script src="./assets//js/bootstrap.bundle.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </body>
 
 </html>

@@ -444,24 +444,60 @@ function getIPAddress()
 // cart function
 function cart($num_of_items = 1)
 {
-    if (isset($_GET['add_to_cart'])) {
-        global $con;
-        $getIpAddress = getIPAddress();
-        $getProductId = $_GET['add_to_cart'];
-        $select_query = "SELECT * FROM `card_details` WHERE ip_address='$getIpAddress' AND product_id=$getProductId";
-        $select_result = mysqli_query($con, $select_query);
-        $num_of_rows = mysqli_num_rows($select_result);
-        if ($num_of_rows > 0) {
-            echo "<script>alert('This item is already present in Cart');</script>";
-            echo "<script>window.open('products.php','_self');</script>";
-            // header("Location:products.php");
-        } else {
-            $insert_query = "INSERT INTO `card_details` (product_id,ip_address,quantity) VALUES ($getProductId,'$getIpAddress',1)";
-            $insert_result = mysqli_query($con, $insert_query);
-            echo "<script>alert('This item added to Cart');</script>";
-            echo "<script>window.open('products.php','_self');</script>";
-        }
+    
+if (isset($_GET['add_to_cart'])) {
+    global $con;
+    $getIpAddress = getIPAddress();
+    $getProductId = $_GET['add_to_cart'];
+    $select_query = "SELECT * FROM `card_details` WHERE ip_address='$getIpAddress' AND product_id=$getProductId";
+    $select_result = mysqli_query($con, $select_query);
+    $num_of_rows = mysqli_num_rows($select_result);
+
+    if ($num_of_rows > 0) {
+        echo "
+        <script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+        <script>
+        Swal.fire({
+            title: 'Oops!',
+            text: 'This item is already in your cart 🛒',
+            icon: 'warning',
+            confirmButtonText: 'Back to Shopping',
+            background: '#f3e8ff',
+            color: '#4b0082',
+            confirmButtonColor: '#a78bfa',
+            customClass: {
+              popup: 'rounded-xl shadow-md'
+            }
+        }).then(() => {
+            window.location.href = 'products.php';
+        });
+        </script>";
+    } else {
+        $insert_query = "INSERT INTO `card_details` (product_id, ip_address, quantity) VALUES ($getProductId, '$getIpAddress', 1)";
+        $insert_result = mysqli_query($con, $insert_query);
+
+        echo "
+        <script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+        <script>
+        Swal.fire({
+            title: 'Yay!',
+            text: 'Item added to your cart 💜',
+            icon: 'success',
+            confirmButtonText: 'Shop More',
+            background: '#f3e8ff',
+            color: '#4b0082',
+            confirmButtonColor: '#a78bfa',
+            customClass: {
+              popup: 'rounded-xl shadow-md'
+            }
+        }).then(() => {
+            window.location.href = 'products.php';
+        });
+        </script>";
     }
+}
+
+
 }
 
 // get cart item numbers function 
