@@ -79,8 +79,9 @@ include('../includes/connect.php');
     
 
     <!-- Footer 
-    <footer class="bg-dark text-white text-center p-3">
-        <small>&copy; 2025 Diva's Bloom. All Rights Reserved.</small>
+    <?php
+    include('./includes/footer.php');
+    ?>
     </footer>-->
 
     <!-- Bootstrap JS -->

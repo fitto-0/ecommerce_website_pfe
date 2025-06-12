@@ -210,6 +210,9 @@ if (isset($_POST['update_qty'])) {
 }
 </style>
 
+<?php
+    include('./includes/footer.php');
+?>
 
 </body>
 <script src="./assets/js/script.js"></script>

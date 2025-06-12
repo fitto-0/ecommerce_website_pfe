@@ -107,9 +107,9 @@ session_start();
 
 
     <!-- Start Footer -->
-    <!-- <div class="upper-nav primary-bg p-2 px-3 text-center text-break">
-        <span>All CopyRight &copy;2023</span>
-    </div> -->
+    <?php
+    include('./includes/footer.php');
+    ?>
     <!-- End Footer -->
 
     <script src="./assets//js/bootstrap.bundle.js"></script>

@@ -50,9 +50,11 @@ session_start();
     </section>
     </div>
 
-
-
-
+    <!-- Start Footer -->
+    <?php
+    include('./includes/footer.php');
+    ?>
+    <!-- End Footer -->
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script> <!-- Font Awesome for icons -->
     <script src="./assets/js/script.js"></script>
     <script
@@ -63,6 +65,3 @@ session_start();
 
 </html>
 
-<?php
-include 'includes/footer.php'; // Include the footer file
-?>

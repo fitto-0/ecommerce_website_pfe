@@ -63,6 +63,11 @@ session_start();
         </div>
     </div>
     <!-- End Products  -->
+     <!-- Start Footer -->
+    <?php
+    include('./includes/footer.php');
+    ?>
+    <!-- End Footer -->
 
 
 

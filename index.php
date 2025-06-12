@@ -38,9 +38,6 @@ session_start();
     
     <!-- End Landing Section -->
 
-
-
-
     <section class="about-us-section py-5 bg-light" id="about">
         <div class="container">
             <div class="row align-items-center">
@@ -60,6 +57,28 @@ session_start();
             </div>
         </div>
     </section>
+
+    <section class="about-us-section py-5 bg-light" id="about-us">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-6 order-md-2 mb-4 mb-md-0" data-aos="fade-left">
+                <img src="./assets/images/0_2.jpeg" alt="Meet the Diva's Bloom Team" class="img-fluid rounded-4 shadow-sm" />
+            </div>
+            <div class="col-md-6 order-md-1" data-aos="fade-right">
+                <h2 class="fw-bold mb-3" style="color: #62447E;">Who We Are</h2>
+                <p class="text-muted mb-3" style="font-size: 1.1rem;">
+                    Behind Diva’s Bloom is a crew of dreamers and doers, rooted in tradition but always pushing forward. We’re more than just a brand—we’re a movement that honors timeless beauty and empowers your unique shine.
+                </p>
+                <p class="text-muted mb-4" style="font-size: 1.1rem;">
+                    With hearts grounded in the classics and eyes on the future, we craft every formula and design with care, because real beauty isn’t a trend—it’s a legacy.
+                </p>
+                <a href="./about.php" class="btn btn-outline-dark rounded-pill px-4 py-2" style="border-color: #62447E; color: #62447E;">About us</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
 
 
 
@@ -216,9 +235,9 @@ session_start();
 
 
     <!-- Start Footer -->
-    <!-- <div class="upper-nav primary-bg p-2 px-3 text-center text-break">
-        <span>All CopyRight &copy;2023</span>
-    </div> -->
+    <?php
+    include('./includes/footer.php');
+    ?>
     <!-- End Footer -->
 
     <script src="./assets/js/bootstrap.bundle.js"></script>
