@@ -81,9 +81,7 @@
         </table>
     </div>
     <!-- Start Footer -->
-    <?php
-    include('./includes/footer.php');
-    ?>
+    
     <!-- End Footer -->
 </body>
 

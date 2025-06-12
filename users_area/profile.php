@@ -238,9 +238,7 @@ if(!isset($_SESSION['username'])){
 
 
     <!-- Start Footer -->
-    <?php
-    include('./includes/footer.php');
-    ?>
+    
     <!-- End Footer -->
 
     <script src="../assets/js/bootstrap.bundle.js"></script>

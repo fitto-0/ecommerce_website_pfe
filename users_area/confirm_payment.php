@@ -73,11 +73,6 @@ if(isset($_POST['confirm_payment'])){
             </div>
         </div>
     </div>
-    <!-- Start Footer -->
-    <?php
-    include('./includes/footer.php');
-    ?>
-    <!-- End Footer -->
     <script src="../assets/js/bootstrap.bundle.js"></script>
 </body>
 

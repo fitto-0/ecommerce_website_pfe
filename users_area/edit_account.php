@@ -90,9 +90,7 @@ if(isset($_POST['user_update'])){
         </div>
     </div>
     <!-- Start Footer -->
-    <?php
-    include('./includes/footer.php');
-    ?>
+    
     <!-- End Footer -->
     <!-- SweetAlert2 CDN -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

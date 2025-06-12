@@ -2,7 +2,7 @@
   <span>All rights reserved &copy; 2025</span>
   <span>
     Made with <span class="heart">❤️</span> by 
-    <a href="https://github.com/fitto-0" target="_blank">Fatima Zahra Elkasmi</a>
+    <a href="https://github.com/fitto-0" target="_blank">Her</a>
   </span>
 </div>
 

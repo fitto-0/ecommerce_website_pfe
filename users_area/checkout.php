@@ -79,9 +79,7 @@ include('../includes/connect.php');
     
 
     <!-- Footer 
-    <?php
-    include('./includes/footer.php');
-    ?>
+    
     </footer>-->
 
     <!-- Bootstrap JS -->
