@@ -441,6 +441,8 @@ function getIPAddress()
     return $ip;
 }
 
+
+
 // cart function
 function cart($num_of_items = 1)
 {
@@ -454,47 +456,49 @@ if (isset($_GET['add_to_cart'])) {
     $num_of_rows = mysqli_num_rows($select_result);
 
     if ($num_of_rows > 0) {
-        echo "
-        <script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
-        <script>
-        Swal.fire({
-            title: 'Oops!',
-            text: 'This item is already in your cart 🛒',
-            icon: 'warning',
-            confirmButtonText: 'Back to Shopping',
-            background: '#f3e8ff',
-            color: '#4b0082',
-            confirmButtonColor: '#a78bfa',
-            customClass: {
-              popup: 'rounded-xl shadow-md'
-            }
-        }).then(() => {
-            window.location.href = 'products.php';
-        });
-        </script>";
-    } else {
-        $insert_query = "INSERT INTO `card_details` (product_id, ip_address, quantity) VALUES ($getProductId, '$getIpAddress', 1)";
-        $insert_result = mysqli_query($con, $insert_query);
+    // If already in cart, increase the quantity
+    $update_query = "UPDATE `card_details` SET quantity = quantity + 1 WHERE product_id = $getProductId AND ip_address = '$getIpAddress'";
+    mysqli_query($con, $update_query);
 
-        echo "
-        <script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
-        <script>
-        Swal.fire({
-            title: 'Yay!',
-            text: 'Item added to your cart 💜',
-            icon: 'success',
-            confirmButtonText: 'Shop More',
-            background: '#f3e8ff',
-            color: '#4b0082',
-            confirmButtonColor: '#a78bfa',
-            customClass: {
-              popup: 'rounded-xl shadow-md'
-            }
-        }).then(() => {
-            window.location.href = 'products.php';
-        });
-        </script>";
-    }
+    echo "
+    <script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+    <script>
+    Swal.fire({
+        title: 'Updated!',
+        text: 'Item quantity increased 🛒✨',
+        icon: 'info',
+        confirmButtonText: 'Continue Shopping',
+        background: '#f3e8ff',
+        color: '#4b0082',
+        confirmButtonColor: '#a78bfa',
+        customClass: { popup: 'rounded-xl shadow-md' }
+    }).then(() => {
+        window.location.href = 'products.php';
+    });
+    </script>";
+} else {
+    // Insert fresh item
+    $insert_query = "INSERT INTO `card_details` (product_id, ip_address, quantity) VALUES ($getProductId, '$getIpAddress', 1)";
+    mysqli_query($con, $insert_query);
+
+    echo "
+    <script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+    <script>
+    Swal.fire({
+        title: 'Yay!',
+        text: 'Item added to your cart 💜',
+        icon: 'success',
+        confirmButtonText: 'Shop More',
+        background: '#f3e8ff',
+        color: '#4b0082',
+        confirmButtonColor: '#a78bfa',
+        customClass: { popup: 'rounded-xl shadow-md' }
+    }).then(() => {
+        window.location.href = 'products.php';
+    });
+    </script>";
+}
+
 }
 
 

@@ -157,7 +157,7 @@ if (isset($_POST['update_qty'])) {
                 $product_title = $product['product_title'];
                 $product_image_one = $product['product_image_one'];
                 $product_price = $product['product_price'];
-                $subtotal = $product_price * $product_id;
+                $subtotal = $product_price * $qty;
                 $total += $subtotal;
 
                 echo "
@@ -166,9 +166,7 @@ if (isset($_POST['update_qty'])) {
                     <td><img src='./admin/product_images/$product_image_one' alt='$product_title'></td>
                     <td>$product_price $</td>
                     <td>
-
-                         $product_id
-                            
+                        $qty
                     </td>
                     
                     <td>$subtotal $</td>
