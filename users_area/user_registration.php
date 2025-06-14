@@ -198,7 +198,7 @@ if (isset($_POST['user_register'])) {
                 confirmButtonColor: '#A855F7',
                 confirmButtonText: 'Let’s Go!'
             }).then(() => {
-                window.location.href = 'login.php';
+                window.location.href = './user_login.php';
             });
             </script>
             ";
