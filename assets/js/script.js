@@ -15,14 +15,7 @@ function decreaseValueBtn() {
     itemsToBuy.value = numero;
 }
 
-// add event listeners
-for (let i = 0; i < increaseBtn.length; i++) {
-    increaseBtn[i].addEventListener('click', increaseValueBtn);
-}
 
-for (let i = 0; i < decreaseBtn.length; i++) {
-    decreaseBtn[i].addEventListener('click', decreaseValueBtn);
-}
 // end product_details page -> increase, decrease items 
 
 
