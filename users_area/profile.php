@@ -20,7 +20,7 @@ if(!isset($_SESSION['username'])){
 <body>
     <!-- upper-nav -->
     <div class="upper-nav primary-bg p-2 px-3 text-center text-break">
-        <span>Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%! <a>Shop Now</a></span>
+        <span>Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%! <a href="products.php" class="text-white text-decoration-underline fw-bold ms-1">Shop Now</a></span>
     </div>
     <!-- upper-nav -->
     <!-- Start NavBar -->

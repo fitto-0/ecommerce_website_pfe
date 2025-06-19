@@ -1,58 +1,102 @@
-<div class="custom-footer">
-  <span>All rights reserved &copy; 2025</span>
-  <span>
-    Made with <span class="heart">❤️</span> by 
-    <a href="https://github.com/fitto-0" target="_blank">Her</a>
-  </span>
-</div>
+<footer class="divas-footer mt-5">
+  <div class="container py-5">
+    <div class="row gy-4 align-items-start">
+
+      <!-- 🌺 Logo -->
+      <div class="col-auto">
+        <a href="index.php">
+          <img src="assets/images/Logo.png" alt="Diva's Bloom Logo" class="footer-logo" />
+        </a>
+      </div>
+
+      <!-- 💋 About -->
+      <div class="col-md">
+        <h5 class="footer-title">Diva's Bloom</h5>
+        <p class="footer-text">
+          Your go-to destination for aesthetic, cruelty-free cosmetics. Bloom with confidence 💋
+        </p>
+      </div>
+
+      <!-- 💄 Links -->
+      <div class="col-auto">
+        <h6 class="footer-title">Quick Links</h6>
+        <ul class="list-unstyled footer-links">
+          <li><a href="index.php">Home</a></li>
+          <li><a href="products.php">Shop</a></li>
+          <li><a href="about.php">About</a></li>
+          <li><a href="contact.php">Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- 🌷 Socials -->
+      <div class="col-auto">
+        <h6 class="footer-title">Follow Us</h6>
+        <ul class="list-unstyled footer-links">
+          <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+          <li><a href="#"><i class="fab fa-facebook"></i> Facebook</a></li>
+          <li><a href="#"><i class="fab fa-tiktok"></i> TikTok</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <hr class="mt-5" />
+
+    <div class="text-center pt-3 small footer-bottom">
+      © 2025 Diva's Bloom. Made with <span class="heart">❤️</span> by <a href="https://github.com/fitto-0" target="_blank">Her</a>.
+    </div>
+  </div>
+</footer>
 
 <style>
-.custom-footer {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background: linear-gradient(135deg, #62447E, #B99CC8);
+  .divas-footer {
+  background: linear-gradient(135deg, #B99CC8, #62447E);
   color: #fff;
-  text-align: center;
-  padding: 10px 20px;
   font-family: 'Poppins', sans-serif;
-  font-size: 0.95rem;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 10px;
-  box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.2);
-  z-index: 999;
-  animation: slideUp 1s ease forwards;
 }
 
-.custom-footer a {
+.footer-logo {
+  max-width: 120px;
+  height: auto;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.footer-title {
   color: #E6D9F3;
-  text-decoration: none;
-  font-weight: 500;
-  transition: color 0.3s ease;
+  font-weight: 600;
+  margin-bottom: 1rem;
 }
 
-.custom-footer a:hover {
+.footer-text {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: #fff;
+}
+
+.footer-links a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.9rem;
+  display: block;
+  margin-bottom: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
   color: #fff;
   text-shadow: 0 0 5px #fff;
 }
 
-.heart {
-  animation: pulse 1s infinite;
-  display: inline-block;
+.footer-bottom a {
+  color: #E6D9F3;
+  text-decoration: none;
 }
 
-@keyframes slideUp {
-  from {
-    transform: translateY(100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0%);
-    opacity: 1;
-  }
+.footer-bottom .heart {
+  animation: pulse 1s infinite;
+  display: inline-block;
+  color: #E6D9F3;
 }
 
 @keyframes pulse {
@@ -60,5 +104,4 @@
   50% { transform: scale(1.2); }
   100% { transform: scale(1); }
 }
-
 </style>
