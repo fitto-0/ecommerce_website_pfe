@@ -19,8 +19,6 @@ Diva’s Bloom is a custom-coded platform made with PHP and MySQL, styled with s
 
 
 
----
-
 ## 💻 Local Installation
 
 Follow these steps to run the project on your local machine:
@@ -89,15 +87,8 @@ Inspired by beauty, simplicity, and women-led entrepreneurship.
 ## 📬 Contact
 
 For any inquiries or collaboration ideas, contact me at:
-<<<<<<< HEAD
-📧 [fatimazahra@example.com](mailto:fittothediva@gmail.com)
 
-
----
-=======
 📧 [fittothediva@gmail.com](mailto:fittothediva@gmail.com)
 
 
 ---
-
->>>>>>> 744d53c9957ab7e197fd5d6f3db7efcf6bb841ce
