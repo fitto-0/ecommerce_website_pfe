@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 14, 2025 at 02:08 PM
+-- Generation Time: Jun 21, 2025 at 10:42 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -33,13 +33,6 @@ CREATE TABLE `card_details` (
   `quantity` int(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `card_details`
---
-
-INSERT INTO `card_details` (`product_id`, `ip_address`, `quantity`) VALUES
-(11, '::1', 1);
-
 -- --------------------------------------------------------
 
 --
@@ -63,6 +56,18 @@ INSERT INTO `categories` (`category_id`, `category_title`) VALUES
 (5, 'Beauty Tools'),
 (6, 'Bath & Body'),
 (7, 'Nail Products');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orders`
+--
+
+CREATE TABLE `orders` (
+  `order_id` int(11) NOT NULL,
+  `username` varchar(100) NOT NULL,
+  `status` varchar(50) DEFAULT 'Pending'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -97,6 +102,33 @@ INSERT INTO `orders_pending` (`order_id`, `user_id`, `invoice_number`, `product_
 (11, 2, 689417214, 10, 2, 'pending'),
 (12, 2, 1067767407, 10, 4, 'pending'),
 (13, 2, 1067767407, 11, 13, 'pending');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `payments`
+--
+
+CREATE TABLE `payments` (
+  `payment_id` int(11) NOT NULL,
+  `order_id` int(11) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `amount` decimal(10,2) NOT NULL,
+  `payment_method` varchar(50) DEFAULT NULL,
+  `transaction_id` varchar(100) DEFAULT NULL,
+  `payment_date` datetime DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `payments`
+--
+
+INSERT INTO `payments` (`payment_id`, `order_id`, `username`, `amount`, `payment_method`, `transaction_id`, `payment_date`) VALUES
+(1, 1, 'exemple', 249.99, 'Credit Card', 'txn_6853f279a023c', '2025-06-19 12:20:48'),
+(2, 1, 'exemple', 249.99, 'Credit Card', 'txn_6853f279a023c', '2025-06-19 12:21:57'),
+(3, 1, 'exemple', 249.99, 'Credit Card', 'txn_6853f279a023c', '2025-06-19 12:22:57'),
+(4, 1, 'exemple', 249.99, 'Credit Card', 'txn_68542606c6e13', '2025-06-19 16:00:44'),
+(5, 8, 'exemple', 344.00, 'Credit Card', 'txn_68566de99c70e', '2025-06-21 09:32:13');
 
 -- --------------------------------------------------------
 
@@ -156,7 +188,9 @@ INSERT INTO `user_orders` (`order_id`, `user_id`, `amount_due`, `invoice_number`
 (3, 1, 240, 351837813, 1, '2023-10-24 18:41:02', 'pending'),
 (4, 1, 120, 911455513, 3, '2025-05-05 18:30:22', 'pending'),
 (5, 2, 168, 689417214, 3, '2025-05-19 23:20:55', 'pending'),
-(6, 2, 306, 1067767407, 2, '2025-05-21 09:24:39', 'pending');
+(6, 2, 306, 1067767407, 2, '2025-05-21 09:24:39', 'pending'),
+(7, 7, 344, 886400, 4, '2025-06-21 09:26:29', 'pending'),
+(8, 7, 344, 758901, 4, '2025-06-21 09:29:45', 'pending');
 
 -- --------------------------------------------------------
 
@@ -198,7 +232,7 @@ CREATE TABLE `user_table` (
 INSERT INTO `user_table` (`user_id`, `username`, `user_email`, `user_password`, `user_image`, `user_ip`, `user_address`, `user_mobile`, `role`) VALUES
 (2, 'admin', 'admin@admin.com', '$2y$10$oif3crHRSIJTL.xzV4PG/uTrKnj2tEl9l98hd2tgXBdlKOmEhPuju', 'admin.png', '::1', 'fffffffff', '666666666', 'admin'),
 (3, 'test', 'test@test.test', '$2y$10$biR/oMaTrL/5zitkytuqFulfl29Mu131XEN1P78dKXlch3LFCjS2S', '457548.jpg', '::1', 'Mesnana Tanger', '0688883030', 'user'),
-(7, 'exemple', 'exemple@ex.emlpe', '$2y$10$DFvPI1EtyPbWum4gnrxIXexwxqkSQEjlLeG1ZrLIlot4eAukHq4QG', 'cbd531ca07e7148162e6077a9bc714ea.jpg', '::1', 'somewhere', '2233445566', 'user'),
+(7, 'exemple', 'exemple@ex.emlpe', '$2y$10$DFvPI1EtyPbWum4gnrxIXexwxqkSQEjlLeG1ZrLIlot4eAukHq4QG', '97222fa158251b2feb29efb5c5103f57.jpg', '::1', 'somewhere', '2233445566', 'user'),
 (8, 'salma', 'salma@sal.ma', '$2y$10$deZkFHYy1KXuFw/ItjkFjeif4.dt.QF6cJE7j3GzfExRoTwv1MeXy', 'profile.webp', '::1', 'somewhere', '2233445566', 'user');
 
 --
@@ -218,10 +252,22 @@ ALTER TABLE `categories`
   ADD PRIMARY KEY (`category_id`);
 
 --
+-- Indexes for table `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`order_id`);
+
+--
 -- Indexes for table `orders_pending`
 --
 ALTER TABLE `orders_pending`
   ADD PRIMARY KEY (`order_id`);
+
+--
+-- Indexes for table `payments`
+--
+ALTER TABLE `payments`
+  ADD PRIMARY KEY (`payment_id`);
 
 --
 -- Indexes for table `products`
@@ -258,10 +304,22 @@ ALTER TABLE `categories`
   MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
+-- AUTO_INCREMENT for table `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `orders_pending`
 --
 ALTER TABLE `orders_pending`
   MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT for table `payments`
+--
+ALTER TABLE `payments`
+  MODIFY `payment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `products`
@@ -273,7 +331,7 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT for table `user_orders`
 --
 ALTER TABLE `user_orders`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `user_payments`
