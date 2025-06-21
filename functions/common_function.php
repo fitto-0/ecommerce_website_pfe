@@ -176,7 +176,7 @@ function filterBrandProduct()
                             <path d='M14.673 7.17173C15.7437 6.36184 15.1709 4.65517 13.8284 4.65517H11.3992C10.7853 4.65517 10.243 4.25521 10.0617 3.66868L9.33754 1.32637C8.9309 0.0110567 7.0691 0.0110564 6.66246 1.32637L5.93832 3.66868C5.75699 4.25521 5.21469 4.65517 4.60078 4.65517H2.12961C0.791419 4.65517 0.215919 6.35274 1.27822 7.16654L3.39469 8.78792C3.85885 9.1435 4.05314 9.75008 3.88196 10.3092L3.11296 12.8207C2.71416 14.1232 4.22167 15.1704 5.30301 14.342L7.14861 12.9281C7.65097 12.5432 8.34903 12.5432 8.85139 12.9281L10.6807 14.3295C11.7636 15.159 13.2725 14.1079 12.8696 12.8046L12.09 10.2827C11.9159 9.71975 12.113 9.10809 12.5829 8.75263L14.673 7.17173Z' fill='black' />
                         </svg>
                         <svg width='16' height='15' viewBox='0 0 16 15' fill='none' xmlns='http://www.w3.org/2000/svg'>
-                            <path opacity='0.25' d='M14.673 7.17173C15.7437 6.36184 15.1709 4.65517 13.8284 4.65517H11.3992C10.7853 4.65517 10.243 4.25521 10.0617 3.66868L9.33754 1.32637C8.9309 0.0110567 7.0691 0.0110564 6.66246 1.32637L5.93832 3.66868C5.75699 4.25521 5.21469 4.65517 4.60078 4.65517H2.12961C0.791419 4.65517 0.215919 6.35274 1.27822 7.16654L3.39469 8.78792C3.85885 9.1435 4.05314 9.75008 3.88196 10.3092L3.11296 12.8207C2.71416 14.1232 4.22167 15.1704 5.30301 14.342L7.14861 12.9281C7.65097 12.5432 8.34903 12.5432 8.85139 12.9281L10.6807 14.3295C11.7636 15.159 13.2725 14.1079 12.8696 12.8046L12.09 10.2827C11.9159 9.71975 12.113 9.10809 12.5829 8.75263L14.673 7.17173Z' fill='black' />
+                            <path opacity='0.25' d='M14.673 7.17173...' fill='#FFAD33' />
                         </svg>
                     </span>
                     <span>(35)</span>
@@ -567,4 +567,77 @@ function get_user_order_details()
             }
         }
     }
+}
+
+// Create a new order from the current cart
+function create_order_from_cart() {
+    global $con;
+    if (!isset($_SESSION['username'])) {
+        return false; // User not logged in
+    }
+    $username = $_SESSION['username'];
+    $get_user_query = "SELECT user_id FROM user_table WHERE username = '$username'";
+    $user_result = mysqli_query($con, $get_user_query);
+    if (!$user_result || mysqli_num_rows($user_result) == 0) {
+        return false;
+    }
+    $user_row = mysqli_fetch_assoc($user_result);
+    $user_id = $user_row['user_id'];
+
+    $ip_address = getIPAddress();
+    $cart_query = "SELECT * FROM card_details WHERE ip_address = '$ip_address'";
+    $cart_result = mysqli_query($con, $cart_query);
+    if (!$cart_result || mysqli_num_rows($cart_result) == 0) {
+        return false; // Cart is empty
+    }
+
+    $total_price = 0;
+    $products = [];
+    while ($cart_row = mysqli_fetch_assoc($cart_result)) {
+        $product_id = $cart_row['product_id'];
+        $quantity = $cart_row['quantity'];
+        $product_query = "SELECT product_price FROM products WHERE product_id = $product_id";
+        $product_result = mysqli_query($con, $product_query);
+        if ($product_result && $product_data = mysqli_fetch_assoc($product_result)) {
+            $price = $product_data['product_price'] * $quantity;
+            $total_price += $price;
+            $products[] = [
+                'product_id' => $product_id,
+                'quantity' => $quantity,
+                'price' => $product_data['product_price']
+            ];
+        }
+    }
+    if ($total_price == 0) {
+        return false;
+    }
+
+    $invoice_number = mt_rand(100000, 999999);
+    $order_date = date('Y-m-d H:i:s');
+    $order_status = 'pending';
+    $insert_order = "INSERT INTO user_orders (user_id, amount_due, invoice_number, total_products, order_date, order_status) VALUES ($user_id, $total_price, $invoice_number, " . count($products) . ", '$order_date', '$order_status')";
+    $order_result = mysqli_query($con, $insert_order);
+    if (!$order_result) {
+        return false;
+    }
+    $order_id = mysqli_insert_id($con);
+
+    // Optionally insert into order_items table if it exists
+    $check_items_table = mysqli_query($con, "SHOW TABLES LIKE 'order_items'");
+    if ($check_items_table && mysqli_num_rows($check_items_table) > 0) {
+        foreach ($products as $item) {
+            $pid = $item['product_id'];
+            $qty = $item['quantity'];
+            $price = $item['price'];
+            mysqli_query($con, "INSERT INTO order_items (order_id, product_id, quantity, price) VALUES ($order_id, $pid, $qty, $price)");
+        }
+    }
+
+    // Clear the cart
+    mysqli_query($con, "DELETE FROM card_details WHERE ip_address = '$ip_address'");
+
+    return [
+        'order_id' => $order_id,
+        'amount_due' => $total_price
+    ];
 }

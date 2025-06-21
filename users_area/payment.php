@@ -13,66 +13,134 @@ include('../functions/common_function.php');
   <title>Checkout - Pay for Cosmetics</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.5.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
-    :root {
-      --purple-dark: #3f0d4f;
-      --purple-med: #6e1a79;
-      --purple-light: #9f4aa8;
-      --accent: #f3e5f5;
-    }
-    body {
-      background: var(--accent);
-      color: var(--purple-dark);
-      font-family: 'Segoe UI', sans-serif;
-    }
-    .navbar {
-      background: var(--purple-dark);
-    }
-    .navbar-brand, .nav-link {
-      color: #fff !important;
-    }
-    .hero {
-      background: var(--purple-med);
-      color: #fff;
-      padding: 4rem 0;
-      text-align: center;
-    }
+  :root {
+    --purple-dark: #3f0d4f;
+    --purple-med: #6e1a79;
+    --purple-light: #b99cc8;
+    --accent-bg: #fdf5fa;
+    --text-light: #fefefe;
+    --gray-light: #e8e4ec;
+    --input-border: #d2b1da;
+    --shadow: rgba(111, 26, 121, 0.2);
+  }
+
+  body {
+    background-color: var(--accent-bg);
+    color: var(--purple-dark);
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+
+  .hero {
+    background: linear-gradient(135deg, var(--purple-med), var(--purple-dark));
+    color: var(--text-light);
+    text-align: center;
+    padding: 4rem 2rem 3rem;
+    border-bottom-left-radius: 50% 10%;
+    border-bottom-right-radius: 50% 10%;
+    box-shadow: 0 8px 25px var(--shadow);
+  }
+
+  .hero h1 {
+    font-weight: 700;
+    font-size: 2.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .hero p {
+    font-size: 1.2rem;
+    opacity: 0.85;
+  }
+
+  .payment-container {
+    background: #fff;
+    max-width: 750px;
+    margin: -60px auto 3rem;
+    padding: 2.5rem 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 10px 40px var(--shadow);
+  }
+
+  .payment-container h2 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+  }
+
+  .payment-methods {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .payment-methods a svg {
+    width: 50px;
+    height: auto;
+    transition: transform 0.3s ease, fill 0.3s ease;
+    fill: var(--purple-light);
+  }
+
+  .payment-methods a:hover svg {
+    transform: scale(1.1);
+    fill: var(--purple-dark);
+  }
+
+  .form-label {
+    font-weight: 600;
+    color: var(--purple-med);
+  }
+
+  .form-control {
+    border: 2px solid var(--input-border);
+    border-radius: 0.5rem;
+    transition: all 0.3s ease;
+    box-shadow: none;
+  }
+
+  .form-control:focus {
+    border-color: var(--purple-med);
+    box-shadow: 0 0 0 0.25rem rgba(111, 26, 121, 0.2);
+  }
+
+  .btn-pay {
+    background: var(--purple-med);
+    border: none;
+    color: white;
+    font-weight: 600;
+    padding: 0.75rem;
+    font-size: 1.2rem;
+    border-radius: 0.5rem;
+    transition: background 0.3s ease, transform 0.2s;
+  }
+
+  .btn-pay:hover {
+    background: var(--purple-dark);
+    transform: translateY(-2px);
+  }
+
+  .footer {
+    text-align: center;
+    padding: 1.5rem;
+    font-size: 0.9rem;
+    color: #888;
+    margin-top: 2rem;
+  }
+
+  @media (max-width: 576px) {
     .hero h1 {
-      font-weight: 600;
+      font-size: 2rem;
     }
-    .payment-container {
-      margin: -2rem auto 2rem;
-      max-width: 700px;
-      background: #fff;
-      border-radius: 0.5rem;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-      padding: 2rem;
+
+    .payment-methods {
+      flex-direction: column;
+      gap: 1rem;
     }
-    .payment-methods svg {
-      width: 60px;
-      margin: 0 .75rem;
-      transition: transform .3s;
-    }
-    .payment-methods a:hover svg {
-      transform: scale(1.1);
-    }
-    .form-control:focus {
-      border-color: var(--purple-med);
-      box-shadow: 0 0 0 .25rem rgba(111,26,121,.25);
-    }
-    .btn-pay {
-      background: var(--purple-med);
-      border: none;
-    }
-    .btn-pay:hover {
-      background: var(--purple-dark);
-    }
-    .footer {
-      text-align: center;
-      padding: 1rem 0;
-      font-size: .9rem;
-      color: #666;
-    }
-  </style>
+  }
+</style>
 </head>
 <body>
 
@@ -117,9 +185,9 @@ include('../functions/common_function.php');
 
     <form action="process_payment.php" method="POST">
       <?php
-// These values should ideally come from the cart or session
-$order_id = 1; // You need to replace this dynamically with the real order ID
-$amount = 249.99; // Same here: dynamically fetch the total
+// Get order_id and amount from URL, fallback to 0 if not set
+$order_id = isset($_GET['order_id']) ? intval($_GET['order_id']) : 0;
+$amount = isset($_GET['amount']) ? floatval($_GET['amount']) : 0.0;
 $payment_method = 'Credit Card'; // Static or chosen from radio/select
 $transaction_id = uniqid('txn_'); // Simulated transaction ID
 ?>

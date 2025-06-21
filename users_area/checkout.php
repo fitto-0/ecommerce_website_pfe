@@ -108,7 +108,21 @@ include('../includes/connect.php');
                     if (!isset($_SESSION['username'])) {
                         include('user_login.php');
                     } else {
-                        include('payment.php');
+                        include('../functions/common_function.php');
+                        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['place_order'])) {
+                            $order = create_order_from_cart();
+                            if ($order && isset($order['order_id'], $order['amount_due'])) {
+                                // Redirect to payment page with order ID and amount
+                                header('Location: payment.php?order_id=' . $order['order_id'] . '&amount=' . $order['amount_due']);
+                                exit();
+                            } else {
+                                echo '<div class="alert alert-danger">Failed to place order. Please try again.</div>';
+                            }
+                        }
+                        // Show Place Order button
+                        echo '<form method="post" class="text-center mt-4">';
+                        echo '<button type="submit" name="place_order" class="btn btn-primary btn-lg">Place Order</button>';
+                        echo '</form>';
                     }
                     ?>
                 </div>
