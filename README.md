@@ -73,7 +73,7 @@ git clone https://github.com/fitto-0/ecommerce_website_pfe.git
   Password: `1234`
 
 * **User**
-  Username: `exemple`
+  Username: `Fatima Zahra Elkasmi`
   Password: `1234`
 
 ---
