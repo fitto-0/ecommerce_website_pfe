@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 21, 2025 at 10:42 AM
+-- Generation Time: Jun 28, 2025 at 03:59 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -128,7 +128,9 @@ INSERT INTO `payments` (`payment_id`, `order_id`, `username`, `amount`, `payment
 (2, 1, 'exemple', 249.99, 'Credit Card', 'txn_6853f279a023c', '2025-06-19 12:21:57'),
 (3, 1, 'exemple', 249.99, 'Credit Card', 'txn_6853f279a023c', '2025-06-19 12:22:57'),
 (4, 1, 'exemple', 249.99, 'Credit Card', 'txn_68542606c6e13', '2025-06-19 16:00:44'),
-(5, 8, 'exemple', 344.00, 'Credit Card', 'txn_68566de99c70e', '2025-06-21 09:32:13');
+(5, 8, 'exemple', 344.00, 'Credit Card', 'txn_68566de99c70e', '2025-06-21 09:32:13'),
+(6, 9, 'Fatima Zahra Elkasmi', 114.00, 'Credit Card', 'txn_685873315410a', '2025-06-22 22:21:34'),
+(7, 14, 'Fatima Zahra Elkasmi', 120.00, 'Credit Card', 'txn_685fdd14c2331', '2025-06-28 13:16:37');
 
 -- --------------------------------------------------------
 
@@ -183,14 +185,17 @@ CREATE TABLE `user_orders` (
 --
 
 INSERT INTO `user_orders` (`order_id`, `user_id`, `amount_due`, `invoice_number`, `total_products`, `order_date`, `order_status`) VALUES
-(1, 1, 1160, 312346784, 3, '2023-10-22 15:31:20', 'paid'),
-(2, 1, 760, 1918753782, 1, '2023-10-24 00:25:10', 'pending'),
-(3, 1, 240, 351837813, 1, '2023-10-24 18:41:02', 'pending'),
 (4, 1, 120, 911455513, 3, '2025-05-05 18:30:22', 'pending'),
 (5, 2, 168, 689417214, 3, '2025-05-19 23:20:55', 'pending'),
 (6, 2, 306, 1067767407, 2, '2025-05-21 09:24:39', 'pending'),
 (7, 7, 344, 886400, 4, '2025-06-21 09:26:29', 'pending'),
-(8, 7, 344, 758901, 4, '2025-06-21 09:29:45', 'pending');
+(8, 7, 344, 758901, 4, '2025-06-21 09:29:45', 'pending'),
+(9, 8, 114, 535789, 2, '2025-06-22 21:40:48', 'paid'),
+(10, 8, 141, 424658, 3, '2025-06-22 22:41:59', 'pending'),
+(11, 8, 162, 842832, 1, '2025-06-22 23:35:02', 'pending'),
+(12, 8, 72, 324348, 1, '2025-06-23 00:50:44', 'pending'),
+(13, 8, 198, 872090, 2, '2025-06-28 12:26:53', 'pending'),
+(14, 8, 120, 542562, 1, '2025-06-28 13:16:20', 'pending');
 
 -- --------------------------------------------------------
 
@@ -206,6 +211,13 @@ CREATE TABLE `user_payments` (
   `payment_method` varchar(255) NOT NULL,
   `payment_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `user_payments`
+--
+
+INSERT INTO `user_payments` (`payment_id`, `order_id`, `invoice_number`, `amount`, `payment_method`, `payment_date`) VALUES
+(2, 9, 535789, 114, 'cash_on_delivery', '2025-06-22 21:40:48');
 
 -- --------------------------------------------------------
 
@@ -230,10 +242,9 @@ CREATE TABLE `user_table` (
 --
 
 INSERT INTO `user_table` (`user_id`, `username`, `user_email`, `user_password`, `user_image`, `user_ip`, `user_address`, `user_mobile`, `role`) VALUES
-(2, 'admin', 'admin@admin.com', '$2y$10$oif3crHRSIJTL.xzV4PG/uTrKnj2tEl9l98hd2tgXBdlKOmEhPuju', 'admin.png', '::1', 'fffffffff', '666666666', 'admin'),
-(3, 'test', 'test@test.test', '$2y$10$biR/oMaTrL/5zitkytuqFulfl29Mu131XEN1P78dKXlch3LFCjS2S', '457548.jpg', '::1', 'Mesnana Tanger', '0688883030', 'user'),
-(7, 'exemple', 'exemple@ex.emlpe', '$2y$10$DFvPI1EtyPbWum4gnrxIXexwxqkSQEjlLeG1ZrLIlot4eAukHq4QG', '97222fa158251b2feb29efb5c5103f57.jpg', '::1', 'somewhere', '2233445566', 'user'),
-(8, 'salma', 'salma@sal.ma', '$2y$10$deZkFHYy1KXuFw/ItjkFjeif4.dt.QF6cJE7j3GzfExRoTwv1MeXy', 'profile.webp', '::1', 'somewhere', '2233445566', 'user');
+(2, 'admin', 'admin@admin.com', '$2y$10$oif3crHRSIJTL.xzV4PG/uTrKnj2tEl9l98hd2tgXBdlKOmEhPuju', '11716a4b048d28c9685070d6982bcfe1.jpg', '::1', 'Tangier, Morocco', '+212692331466', 'admin'),
+(7, 'Salma Gege', 'salmagege@gmail.com', '$2y$10$DFvPI1EtyPbWum4gnrxIXexwxqkSQEjlLeG1ZrLIlot4eAukHq4QG', '7b0551406cd7936252123558aacc9191.jpg', '::1', 'Tangier, Morocco', '+212690386422', 'user'),
+(8, 'Fatima Zahra Elkasmi', 'fatimazahra@gmail.com', '$2y$10$deZkFHYy1KXuFw/ItjkFjeif4.dt.QF6cJE7j3GzfExRoTwv1MeXy', 'c14bcffa07a72439ab9cba58811f94da.jpg', '::1', 'Tangier, Morocco', '+212633790011', 'user');
 
 --
 -- Indexes for dumped tables
@@ -319,7 +330,7 @@ ALTER TABLE `orders_pending`
 -- AUTO_INCREMENT for table `payments`
 --
 ALTER TABLE `payments`
-  MODIFY `payment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `payment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `products`
@@ -331,13 +342,13 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT for table `user_orders`
 --
 ALTER TABLE `user_orders`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `user_payments`
 --
 ALTER TABLE `user_payments`
-  MODIFY `payment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `payment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `user_table`
